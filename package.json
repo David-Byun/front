@@ -26,6 +26,7 @@
     "es6-promise": "^4.2.8",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "express-flash": "0.0.2",
     "express-session": "^1.17.2",
     "isomorphic-fetch": "^3.0.0",
     "mongoose": "^6.0.2",
