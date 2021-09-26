@@ -1,0 +1,32 @@
+{
+    "cSpell.ignoreWords": [
+        "a",
+        "anon",
+        "browser",
+        "case",
+        "close",
+        "connected",
+        "connection",
+        "console",
+        "const",
+        "each",
+        "for",
+        "json",
+        "log",
+        "message",
+        "msg",
+        "new",
+        "nickname",
+        "on",
+        "parse",
+        "payload",
+        "push",
+        "send",
+        "socket",
+        "sockets",
+        "switch",
+        "to",
+        "type",
+        "wss"
+    ]
+}
