@@ -1,3 +1,37 @@
+1. Hamburger Button
+
+- button + hamburger icon
+- menu > li > a -> hidden
+- toggle on click
+- animation
+
+2. Toast Notification
+
+- toast container floating
+- toast design
+- button
+- click show random toast message
+
+3. Auto Write Text
+
+- text
+- index
+- show text based on index
+- increment index
+
+4. Popup / Modal
+
+- button
+- click on button to activate popup
+- popup container
+- popup with text
+- close btn popup with click event
+
+5. Purple Heart Rain
+
+- heart css
+- falling animation
+
 6. Background Change
 
 - button w/ click
@@ -19,3 +53,17 @@
 - images with fixed width and height
 - index
 - automatic switch index and update container transform property
+
+9. Sound Board
+
+- sounds( Have these ready sir)
+- array with names
+- loop over array
+- create buttons w/ text
+- play sound on click
+
+10. Zoom effect
+
+- image
+- track mouse movement
+- set transform origin on hover
