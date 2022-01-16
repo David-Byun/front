@@ -4,12 +4,12 @@
   "description": "",
   "scripts": {
     "dev": "nodemon --exec babel-node src/init.js",
-    "build:css": "postcss public/styles/tailwind.css -o public/styles/style.css"
+    "build:css": "postcss src/client/styles/tailwind.css -o src/client/styles/styles.css",
+    "assets": "webpack --config webpack.config.js"
   },
   "author": "David",
   "license": "ISC",
   "dependencies": {
-    "autoprefixer": "^10.4.0",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
     "dotenv": "^10.0.0",
@@ -19,15 +19,25 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "node-fetch": "^2.6.1",
-    "postcss": "^8.4.5",
     "postcss-cli": "^9.1.0",
-    "pug": "^3.0.2",
-    "tailwindcss": "^3.0.7"
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
     "@babel/node": "^7.16.5",
-    "nodemon": "^2.0.15"
+    "@babel/preset-env": "^7.16.5",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "2.4.5",
+    "nodemon": "^2.0.15",
+    "postcss": "^8.4.5",
+    "postcss-loader": "^6.2.1",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.0.15",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
   }
 }

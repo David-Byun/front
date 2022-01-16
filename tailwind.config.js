@@ -1,5 +1,5 @@
 module.exports = {
-  content: [],
+  content: ["./src/**/*.pug", "./src/**/**/*.pug"],
   presets: [],
   darkMode: "media", // or 'class'
   theme: {
