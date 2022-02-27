@@ -3,39 +3,37 @@ import type { NextPage } from "next";
 const Home: NextPage = () => {
   return (
     <div className="grid min-h-screen gap-10 bg-slate-400 py-20 px-20 lg:grid-cols-2 xl:grid-cols-3 xl:place-content-center">
-      <div className="flex flex-col justify-between rounded-3xl bg-white p-6 shadow-2xl sm:hover:bg-pink-300">
-        <span className="text-3xl font-semibold">Select Item</span>
+      <div className="dark flex flex-col justify-between rounded-3xl bg-white p-6 shadow-2xl dark:bg-black sm:hover:bg-pink-300">
+        <span className="text-3xl font-semibold dark:text-white">
+          Select Item
+        </span>
         <ul>
-          {[1, 2, 3, 4, 5].map((i) => (
+          {[1, 2].map((i) => (
             <div key={i} className="my-2 flex justify-between">
-              <span className="text-gray-500">Grey Chair</span>
-              <span className="font-semibold">$19</span>
+              <span className="text-gray-500 dark:text-gray-50">
+                Grey Chair
+              </span>
+              <span className="font-semibold dark:text-gray-100">$19</span>
             </div>
           ))}
         </ul>
-        <ul>
-          {["a", "b", "c", ""].map((c, i) => (
-            <li className="bg-red-500 py-2 empty:hidden" key={i}>
-              {c}
-            </li>
-          ))}
-        </ul>
+
         <div className="mt-2 flex justify-between border-t-2 border-dashed pt-2">
-          <span>Total</span>
-          <span className="font-semibold">$10</span>
+          <span className="dark:text-gray-50">Total</span>
+          <span className="font-semibold dark:text-white">$10</span>
         </div>
         <div className="flex justify-center">
           <button
-            className="mx-auto mt-5 w-3/4 rounded-xl bg-blue-500 p-3 text-center text-white 
-        hover:bg-teal-500 hover:text-black focus:bg-red-500
-        active:bg-yellow-500"
+            className="mx-auto mt-5 w-3/4 rounded-xl bg-blue-500 p-3 text-center text-white hover:bg-teal-500 
+        hover:text-black focus:bg-red-500 active:bg-yellow-500
+        dark:border dark:border-white dark:bg-black dark:hover:bg-white"
           >
             Checkout
           </button>
         </div>
       </div>
       <div className="group overflow-hidden rounded-2xl bg-white shadow-2xl">
-        <div className="bg-blue-500 p-6 pb-14 xl:pb-64">
+        <div className="p-6 pb-14 xl:pb-64 portrait:bg-indigo-600 landscape:bg-teal-500">
           <span className="text-2xl text-white">Profile</span>
         </div>
         <div className="relative -top-5 rounded-3xl bg-white p-6">
