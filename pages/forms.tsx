@@ -1,57 +1,29 @@
-import React, { isValidElement, useState } from "react";
+import { useForm } from "react-hook-form";
+
+// Less code
+// Better validation
+// Better Errors (Set, clear, display)
+// Have control over inputs
+// Dont deal with events
+// Easier Inputs
 
 export default function Forms() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [formErrors, setFormErrors] = useState("");
-  const onUsernameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = event;
-    setUsername(value);
-  };
-  const onEmailChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = event;
-    setUsername(value);
-  };
-  const onPasswordChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = event;
-    setUsername(value);
-  };
-  const onSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (username === "" || email === "" || password === "") {
-      setFormErrors("All fields are required");
-    }
-    if (email.includes("@")) {
-    }
-  };
+  const { register, watch } = useForm();
+  console.log(register("name"));
+  console.log(watch());
 
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <input
-        defaultValue={username}
-        onChange={onUsernameChange}
+        {...register("username")}
         type="text"
         placeholder="Username"
         required
         minLength={5}
       />
+      <input {...register("email")} type="email" placeholder="Email" required />
       <input
-        defaultValue={email}
-        onChange={onEmailChange}
-        type="email"
-        placeholder="Email"
-        required
-      />
-      <input
-        defaultValue={password}
-        onChange={onPasswordChange}
+        {...register("password")}
         type="password"
         placeholder="Password"
         required
