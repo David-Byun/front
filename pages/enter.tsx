@@ -1,10 +1,15 @@
+import { NextPage } from "next";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { cls } from "../libs/utils";
 
-function cls(...classnames: string[]) {
-  return classnames.join(" ");
+interface EnterForm {
+  email?: string;
+  phone?: string;
 }
 
-export default function Enter() {
+const Enter: NextPage = () => {
+  const { register } = useForm<EnterForm>();
   const [method, setMethod] = useState<"email" | "phone">("email");
   const onEmailClick = () => setMethod("email");
   const onPhoneClick = () => setMethod("phone");
@@ -112,4 +117,6 @@ export default function Enter() {
       </div>
     </div>
   );
-}
+};
+
+export default Enter;
