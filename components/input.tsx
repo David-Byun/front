@@ -3,12 +3,15 @@ interface InputProps {
   name: string;
   kind?: "text" | "phone" | "price";
   [key: string]: any;
+  required: boolean;
 }
 
 export default function Input({
   label,
   name,
   kind = "text",
+  register,
+  required,
   ...rest
 }: InputProps) {
   return (
@@ -23,6 +26,8 @@ export default function Input({
         <div className="relative flex items-center rounded-md shadow-sm">
           <input
             id={name}
+            required={required}
+            {...register}
             {...rest}
             className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
           />
@@ -35,6 +40,8 @@ export default function Input({
           </div>
           <input
             id={name}
+            required={required}
+            {...register}
             {...rest}
             className="w-full appearance-none rounded-md border border-gray-300 px-3 py-2 pl-7 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline-none focus:ring-orange-500"
           />
@@ -50,6 +57,8 @@ export default function Input({
           </span>
           <input
             id={name}
+            required={required}
+            {...register}
             {...rest}
             className="w-full appearance-none rounded-md rounded-l-none border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-orange-500 focus:outline focus:ring-orange-500"
           />
