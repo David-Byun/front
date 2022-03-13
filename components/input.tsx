@@ -1,11 +1,3 @@
-interface InputProps {
-  label: string;
-  name: string;
-  kind?: "text" | "phone" | "price";
-  [key: string]: any;
-  required: boolean;
-}
-
 export default function Input({
   label,
   name,
@@ -13,7 +5,7 @@ export default function Input({
   register,
   required,
   ...rest
-}: InputProps) {
+}) {
   return (
     <div>
       <label
