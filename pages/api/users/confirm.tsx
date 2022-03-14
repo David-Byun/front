@@ -5,9 +5,14 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { token } = req.body;
-  const exists = await client.token.findUnique({ where: { payload: token } });
+  const exists = await client.token.findUnique({
+    where: { payload: token },
+  });
   if (!exists) res.status(404).end();
-  console.log(exists);
+  req.session.user = {
+    id: exists.userId,
+  };
+  await req.session.save();
   res.status(200).end();
 }
 
