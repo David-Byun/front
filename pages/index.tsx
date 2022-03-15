@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import Layout from "@components/layout";
 import userUser from "@libs/client/useUser";
+import { CompositionSettingsList } from "twilio/lib/rest/video/v1/compositionSettings";
 
 const Home: NextPage = () => {
-  const user = userUser();
+  const { user, isLoading } = userUser();
   console.log(user);
   return (
     <Layout title="Home" hasTabBar>
