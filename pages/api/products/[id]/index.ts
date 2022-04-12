@@ -5,7 +5,10 @@ import { withApiSession } from "@libs/server/withSession";
 import { prisma } from "@prisma/client";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
+  const {
+    query: { id },
+    session: { user },
+  } = req;
   const product = await client.product.findUnique({
     where: {
       id: +id.toString(),
@@ -31,7 +34,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     },
   });
-  res.json({ ok: true, product, relatedProducts });
+  const isLiked = Boolean(
+    await client.fav.findFirst({
+      where: {
+        productId: product?.id,
+        userId: user?.id,
+      },
+      select: {
+        id: true,
+      },
+    })
+  );
+  res.json({ ok: true, product, isLiked, relatedProducts });
 }
 
 export default withApiSession(
