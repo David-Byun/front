@@ -22,13 +22,15 @@ interface PostsResponse {
 const Community: NextPage = () => {
   const { latitude, longitude } = useCoords();
   const { data } = useSWR<PostsResponse>(
-    `/api/posts?latitude=${latitude}&longitude=${longitude}`
+    latitude && longitude
+      ? `/api/posts?latitude=${latitude}&longitude=${longitude}`
+      : null
   );
   return (
     <Layout title="Community" hasTabBar>
       <div className="space-y-8 py-16">
         {data?.posts?.map((post) => (
-          <Link key={post.id} href={`/community/${post.id}`}>
+          <Link key={post?.id} href={`/community/${post.id}`}>
             <a className="flex cursor-pointer flex-col items-start pt-4">
               <span className="ml-4 flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
                 동네질문
