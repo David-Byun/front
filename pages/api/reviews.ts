@@ -4,12 +4,17 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { withApiSession } from "@libs/server/withSession";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const profile = await client.user.findUnique({
-    where: { id: req.session.user?.id },
+  const {
+    session: { user },
+  } = req;
+  const reviews = await client.review.findMany({
+    where: {
+      createdForId: user?.id,
+    },
   });
   res.json({
     ok: true,
-    profile,
+    reviews,
   });
 }
 
