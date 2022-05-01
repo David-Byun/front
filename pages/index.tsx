@@ -6,9 +6,20 @@ import useUser from "@libs/client/useUser";
 import Head from "next/head";
 import useSWR from "swr";
 
+export interface ProductWithCount extends Product {
+  _count: {
+    favs: number;
+  };
+}
+
+interface ProductsResponse {
+  ok: boolean;
+  products: ProductWithCount[];
+}
+
 const Home: NextPage = () => {
   const { user, isLoading } = useUser();
-  const { data } = useSWR("/api/products");
+  const { data } = useSWR<ProductsResponse>("/api/products");
   return (
     <Layout title="홈" hasTabBar>
       <Head>
