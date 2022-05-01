@@ -1,17 +1,29 @@
 import type { NextPage } from "next";
 import Layout from "@components/layout";
+import { Stream } from "@prisma/client";
+import useSWR from "swr";
+import Link from "next/link";
+import FloatingButton from "@components/floating-button";
 
-const Live: NextPage = () => {
+interface StreamsResponse {
+  ok: boolean;
+  streams: Stream[];
+}
+
+const Streams: NextPage = () => {
+  const { data } = useSWR<StreamsResponse>(`/api/streams`);
   return (
     <Layout hasTabBar title="Live">
       <div className="space-y-4 divide-y-2 py-10 ">
-        {[1, 2, 3, 4, 5].map((_, i) => (
-          <div key={i} className="px-4 pt-4">
-            <div className="aspect-video w-full rounded-md bg-slate-300 shadow-sm" />
-            <h3 className="mt-2 text-lg text-gray-700">Let`s try potatoes</h3>
-          </div>
+        {data?.streams.map((stream) => (
+          <Link key={stream.id} href={`/streams/${stream.id}`}>
+            <a className="block px-4 pt-4">
+              <div className="aspect-video w-full rounded-md bg-slate-300 shadow-sm" />
+              <h3 className="mt-2 text-lg text-gray-700">{stream.name}</h3>
+            </a>
+          </Link>
         ))}
-        <button className="fixed bottom-24 right-5 cursor-pointer rounded-full border-transparent bg-orange-400 p-4 text-white shadow-xl transition hover:bg-orange-600">
+        <FloatingButton href="/streams/create">
           <svg
             className="h-6 w-6"
             fill="none"
@@ -26,10 +38,10 @@ const Live: NextPage = () => {
               d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
             ></path>
           </svg>
-        </button>
+        </FloatingButton>
       </div>
     </Layout>
   );
 };
 
-export default Live;
+export default Streams;

@@ -7,7 +7,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Stream } from "stream";
+import { Stream } from "@prisma/client";
 
 interface CreateForm {
   name: string;
@@ -45,7 +45,7 @@ const Create: NextPage = () => {
           type="text"
         />
         <Input
-          register={register("price", { required: true })}
+          register={register("price", { required: true, valueAsNumber: true })}
           required
           label="Price"
           name="price"
