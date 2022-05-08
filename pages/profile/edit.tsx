@@ -1,12 +1,11 @@
+import type { NextPage } from "next";
 import Button from "@components/button";
 import Input from "@components/input";
 import Layout from "@components/layout";
-import useMutation from "@libs/client/useMutation";
-import userUser from "@libs/client/useUser";
-import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import useUser from "@libs/client/useUser";
 import { useForm } from "react-hook-form";
-
+import { useEffect, useState } from "react";
+import useMutation from "@libs/client/useMutation";
 interface EditProfileForm {
   email?: string;
   phone?: string;
@@ -14,14 +13,12 @@ interface EditProfileForm {
   avatar?: FileList;
   formErrors?: string;
 }
-
 interface EditProfileResponse {
   ok: boolean;
   error?: string;
 }
-
 const EditProfile: NextPage = () => {
-  const { user } = userUser();
+  const { user } = useUser();
   const {
     register,
     setValue,
@@ -37,31 +34,33 @@ const EditProfile: NextPage = () => {
   }, [user, setValue]);
   const [editProfile, { data, loading }] =
     useMutation<EditProfileResponse>(`/api/users/me`);
-  const onValid = async({ email, phone, name, avatar }: EditProfileForm) => {
+  const onValid = async ({ email, phone, name, avatar }: EditProfileForm) => {
     if (loading) return;
     if (email === "" && phone === "" && name === "") {
       return setError("formErrors", {
-        message: "Email or Phone number are required. You need to choose one.",
+        message: "Email OR Phone number are required. You need to choose one.",
       });
     }
-    if (avatar && avatar.length > 0) {
-      // ask for CF URL
-      const cloudflareRequest = await (await fetch(`/api/files`)).json()
-      console.log(cloudflareRequest)
+
+    if (avatar && avatar.length > 0 && user) {
+      // get CF factors
+      const { id, uploadURL } = await (await fetch(`/api/files`)).json();
+
       // upload file to CF URL
-      return
-      editProfile({
-        email,
-        phone,
-        name,
-        // avatarUrl : CF URL
+      const form = new FormData();
+      form.append("file", avatar[0], user?.id + "");
+      await fetch(uploadURL, {
+        method: "POST",
+        body: form,
       });
+      return;
     } else {
       editProfile({
         email,
         phone,
         name,
       });
+    }
   };
   useEffect(() => {
     if (data && !data.ok && data.error) {
@@ -90,7 +89,7 @@ const EditProfile: NextPage = () => {
           )}
           <label
             htmlFor="picture"
-            className="cursor-pointer rounded-md border border-gray-300 py-2 px-3 text-sm font-medium text-gray-700 shadow-sm focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            className="cursor-pointer rounded-md border border-gray-300 py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
           >
             Change
             <input
@@ -134,5 +133,4 @@ const EditProfile: NextPage = () => {
     </Layout>
   );
 };
-
 export default EditProfile;
