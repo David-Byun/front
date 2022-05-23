@@ -1,11 +1,29 @@
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@components/button";
 import Input from "@components/input";
 import { cls } from "@libs/client/utils";
 import useMutation from "@libs/client/useMutation";
 import { useRouter } from "next/router";
+import { resolve } from "path/posix";
+import BS from "@components/bs";
+import dynamic from "next/dynamic";
+
+const Bs = dynamic(
+  () =>
+    new Promise((resolve) =>
+      setTimeout(() => resolve(import("@components/bs")), 10000)
+    ),
+  {
+    ssr: false,
+    suspense: true,
+  }
+);
+
+<Suspense fallback="Loading Something big">
+  <BS />
+</Suspense>;
 
 const Enter: NextPage = () => {
   const [enter, { loading, data, error }] = useMutation("/api/users/enter");
@@ -75,6 +93,7 @@ const Enter: NextPage = () => {
                 >
                   Email address
                 </button>
+
                 <button
                   className={cls(
                     "border-b-2 pb-4 font-medium",
