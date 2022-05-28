@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function useMutation(url) {
+interface UrlProps {
+  url: string;
+}
+
+export default function useMutation(url: any) {
   const [state, setState] = useState({
     loading: false,
     data: undefined,

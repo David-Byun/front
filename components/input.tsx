@@ -1,8 +1,12 @@
 export default function Input({
+  //@ts-ignore
   label,
+  //@ts-ignore
   name,
   kind = "text",
+  //@ts-ignore
   register,
+  //@ts-ignore
   required,
   ...rest
 }) {

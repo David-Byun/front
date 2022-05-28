@@ -20,10 +20,14 @@ export default function ProductList({ kind }: ProductListProps) {
   return data ? (
     <>
       {data[kind]?.map((record) => (
+        //@ts-ignore
         <Item
+          //@ts-ignore
           id={record.product.id}
           key={record.id}
+          //@ts-ignore
           title={record.product.name}
+          //@ts-ignore
           price={record.product.price}
           hearts={record.product._count.favs}
         />

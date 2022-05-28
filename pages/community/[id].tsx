@@ -8,6 +8,7 @@ import useMutation from "@libs/client/useMutation";
 import { cls } from "@libs/client/utils";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { Answer, Post, User } from "@prisma/client";
 
 interface AnswerWithUser extends Answer {
   user: User;

@@ -1,6 +1,14 @@
 import { UseFormRegister } from "react-hook-form";
 
-export default function TextArea({ label, name, register, ...rest }) {
+export default function TextArea({
+  //@ts-ignore
+  label,
+  //@ts-ignore
+  name,
+  //@ts-ignore
+  register,
+  ...rest
+}) {
   return (
     <div>
       {label ? (

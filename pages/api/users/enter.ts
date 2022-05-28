@@ -20,9 +20,11 @@ async function handler(
       payload,
       user: {
         connectOrCreate: {
+          //@ts-ignore
           where: {
             ...user,
           },
+          //@ts-ignore
           create: {
             name: "Anonymous",
             ...user,
