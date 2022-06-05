@@ -39,6 +39,13 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
     boundMutate((prev) => prev && { ...prev, isLiked: !prev.isLiked }, false);
     // mutate("/api/users/me", (prev: any) => ({ ok: !prev.ok }), false);
     toggleFav({});
+    if (router.isFallback) {
+      return (
+        <Layout title="Loading for you!">
+          <span>I love you</span>
+        </Layout>
+      );
+    }
   };
   return (
     <Layout canGoBack seoTitle="Product Detail">
