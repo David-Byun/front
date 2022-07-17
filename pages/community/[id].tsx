@@ -12,6 +12,7 @@ import TextArea from "../../components/textarea";
 
 interface AnswerWithUser extends Answer {
   user: User;
+  createdAt: number;
 }
 
 interface PostWithUser extends Post {
