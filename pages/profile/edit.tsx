@@ -10,6 +10,7 @@ import useMutation from "@libs/server/useMutation";
 interface EditProfileForm {
   email?: string;
   phone?: string;
+  name?: string;
   formErrors?: string;
 }
 
@@ -28,19 +29,24 @@ const EditProfile: NextPage = () => {
     formState: { errors },
   } = useForm<EditProfileForm>();
   useEffect(() => {
+    if (user?.name) setValue("name", user.name);
     if (user?.phone) setValue("phone", user.phone);
     if (user?.email) setValue("email", user.email);
   }, [user, setValue]);
   const [editProfile, { data, loading }] =
     useMutation<EditProfileResponse>(`/api/users/me`);
-  const onValid = ({ email, phone }: EditProfileForm) => {
+  const onValid = ({ email, phone, name }: EditProfileForm) => {
     if (loading) return;
-    if (email === "" && phone === "") {
+    if (email === "" && phone === "" && name === "") {
       return setError("formErrors", {
         message: "Email Or Phone number are required. You need to choose one",
       });
     }
-    editProfile({ email, phone });
+    editProfile({
+      email,
+      phone,
+      name,
+    });
   };
   useEffect(() => {
     if (data && !data.ok && data.error) {
@@ -65,6 +71,13 @@ const EditProfile: NextPage = () => {
             />
           </label>
         </div>
+        <Input
+          register={register("name")}
+          required={false}
+          label="Name"
+          name="name"
+          type="text"
+        />
         <Input
           register={register("email")}
           required={false}
