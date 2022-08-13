@@ -10,6 +10,12 @@ interface StreamsResponse {
   streams: Stream[];
 }
 
+// backend = frontPage - 1
+// pageSize = 25
+// take : 25
+// skip : backendPage * 25
+// 백엔드랑 프런트랑 페이지 다르다는 것 명심!
+
 const Streams: NextPage = () => {
   const { data } = useSWR<StreamsResponse>(`/api/streams`);
   return (
