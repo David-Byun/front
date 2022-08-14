@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -10,21 +10,44 @@ function cls(...classnames: string[]) {
   return classnames.join(" ");
 }
 
+interface EnterForm {
+  name: string;
+  password: string;
+}
+
+interface TokenForm {
+  token: string;
+}
+
+interface MutationResult {
+  ok: boolean;
+}
+
 const Home: NextPage = () => {
-  const [enter, { loading, data, error }] = useMutation("/api/users/enter");
+  const [enter, { loading, data, error }] =
+    useMutation<MutationResult>("/api/users/enter");
+  const [confirmToken, { loading: tokenLoading, data: tokenData }] =
+    useMutation<MutationResult>("/api/users/enter");
   const [submitting, setSubmitting] = useState(false);
-  const router = useRouter();
   const { register, handleSubmit } = useForm();
-  const onValid = (data) => {
-    setSubmitting(true);
-    fetch("/api/users/enter", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => setSubmitting(false));
+  const { register: tokenRegister, handleSubmit: tokenHandleSubmit } =
+    useForm<TokenForm>();
+  const onValid = (validForm: EnterForm) => {
+    if (loading) return;
+    enter(validForm);
   };
+  const onTokenValid = (validForm: TokenForm) => {
+    console.log(`validForm : ${validForm}`);
+    if (tokenLoading) return;
+    confirmToken(validForm);
+  };
+  console.log(loading, data, error);
+  const router = useRouter();
+  useEffect(() => {
+    if (tokenData?.ok) {
+      router.push("/tweet");
+    }
+  }, [tokenData, router]);
   return (
     <div className="flex h-full w-full flex-col bg-black px-4">
       <img
@@ -50,32 +73,53 @@ const Home: NextPage = () => {
           <h3 className="mb-8 text-3xl text-white">
             오늘 트위터를 이용해보세요.
           </h3>
-          <form
-            onSubmit={handleSubmit(onValid)}
-            className="flex flex-col space-y-3"
-          >
-            <input
-              className="rounded-md border-solid border-sky-400 py-2"
-              placeholder="아이디를 입력해주세요"
-              type="text"
-              {...register("id")}
-            ></input>
-            <input
-              className="rounded-md border-solid border-sky-400 py-2"
-              placeholder="패스워드를 입력해주세요"
-              type="password"
-              {...register("password")}
-            ></input>
-            <button className="rounded-md border-2 border-sky-400 py-2 text-white">
-              {submitting ? "Loading" : "로그인"}
-            </button>
-          </form>
-          <div className="text-lg text-white">처음 이신가요?</div>
-          <form className="rounded-md border-2 border-sky-400 py-2 text-white">
-            <button type="button" onClick={() => router.push("/register")}>
-              가입하기
-            </button>
-          </form>
+          {data?.ok ? (
+            <>
+              <form
+                onSubmit={tokenHandleSubmit(onTokenValid)}
+                className="flex flex-col space-y-3"
+              >
+                <input
+                  className="rounded-md border-solid border-sky-400 py-2"
+                  placeholder="토큰을 입력해주세요."
+                  type="number"
+                  {...(tokenRegister("token"), { required: true })}
+                ></input>
+                <button className="rounded-md border-2 border-sky-400 py-2 text-white">
+                  {submitting ? "Loading" : "확인"}
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <form
+                onSubmit={handleSubmit(onValid)}
+                className="flex flex-col space-y-3"
+              >
+                <input
+                  className="rounded-md border-solid border-sky-400 py-2"
+                  placeholder="아이디를 입력해주세요"
+                  type="text"
+                  {...(register("name"), { required: true })}
+                ></input>
+                <input
+                  className="rounded-md border-solid border-sky-400 py-2"
+                  placeholder="패스워드를 입력해주세요"
+                  type="password"
+                  {...(register("password"), { required: true })}
+                ></input>
+                <button className="rounded-md border-2 border-sky-400 py-2 text-white">
+                  {submitting ? "Loading" : "로그인"}
+                </button>
+              </form>
+              <div className="text-lg text-white">처음 이신가요?</div>
+              <form className="rounded-md border-2 border-sky-400 py-2 text-white">
+                <button type="button" onClick={() => router.push("/register")}>
+                  가입하기
+                </button>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>
