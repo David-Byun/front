@@ -3,35 +3,22 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import Link from "next/link";
-import useMutation from "../libs/useMutation";
 
 function cls(...classnames: string[]) {
   return classnames.join(" ");
 }
 
-const Home: NextPage = () => {
-  const [enter, { loading, data, error }] = useMutation("/api/users/enter");
-  const [submitting, setSubmitting] = useState(false);
+const Register: NextPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
   const onValid = (data) => {
-    setSubmitting(true);
     fetch("/api/users/enter", {
       method: "POST",
       body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => setSubmitting(false));
+    });
   };
   return (
     <div className="flex h-full w-full flex-col bg-black px-4">
-      <img
-        src="https://www.bworldonline.com/wp-content/uploads/2021/07/Twitter-640x569.jpg"
-        height="800"
-        width="800"
-      />
       <h3 className="mt-8 text-3xl font-medium">
         <svg
           className="h-20 w-20 text-white"
@@ -48,11 +35,11 @@ const Home: NextPage = () => {
             지금 일어나고 있는 일
           </h5>
           <h3 className="mb-8 text-3xl text-white">
-            오늘 트위터를 이용해보세요.
+            오늘 트위터에 가입하세요.
           </h3>
           <form
-            onSubmit={handleSubmit(onValid)}
             className="flex flex-col space-y-3"
+            onSubmit={handleSubmit(onValid)}
           >
             <input
               className="rounded-md border-solid border-sky-400 py-2"
@@ -67,12 +54,6 @@ const Home: NextPage = () => {
               {...register("password")}
             ></input>
             <button className="rounded-md border-2 border-sky-400 py-2 text-white">
-              {submitting ? "Loading" : "로그인"}
-            </button>
-          </form>
-          <div className="text-lg text-white">처음 이신가요?</div>
-          <form className="rounded-md border-2 border-sky-400 py-2 text-white">
-            <button type="button" onClick={() => router.push("/register")}>
               가입하기
             </button>
           </form>
@@ -82,4 +63,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Register;
