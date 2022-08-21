@@ -1,4 +1,4 @@
-import prisma from "../../../libs/client";
+import { client } from "../../../libs/client";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
 import withHandler from "../../../libs/withHandlers";
@@ -13,9 +13,7 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  console.log(`req.session : ${req.session}`);
   const { token } = req.body;
-  console.log(`token : ${token}`);
   const foundToken = await client.token.findUnique({
     where: {
       payload: token,
@@ -25,7 +23,6 @@ async function handler(
     },
   });
   if (!foundToken) return res.status(404).end();
-  console.log(`foundToken : ${foundToken}`);
   req.session.user = {
     id: foundToken?.userId,
   };

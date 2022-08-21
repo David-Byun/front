@@ -1,30 +1,28 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { useReducer } from "react";
 import { client } from "../../../libs/client";
 import withHandler from "../../../libs/withHandlers";
 import { withApiSession } from "../../../libs/withSession";
-
-interface ResponseType {
-  ok: boolean;
-  [key: string]: any;
-}
 
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  const {
-    session: { user },
-  } = req;
-  const foundTweet = await client.tweet.findMany({
-    where: {
-      userId: user?.id,
+  const { tweet } = req.body;
+  const { user } = req.session;
+  const registerTweet = await client.tweet.create({
+    data: {
+      tweet,
+      user: { connect: { id: user?.id } },
     },
-    include: { user: { select: { email: true } } },
+    include: {
+      user: true,
+    },
   });
   res.json({
     ok: true,
-    foundTweet,
+    registerTweet,
   });
 }
 
-export default withApiSession(withHandler({ method: "GET", handler }));
+export default withApiSession(withHandler({ method: "POST", handler }));

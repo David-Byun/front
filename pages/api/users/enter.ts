@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { userInfo } from "os";
+import { client } from "../../../libs/client";
 import withHandler from "../../../libs/withHandlers";
 import { withApiSession } from "../../../libs/withSession";
 
@@ -12,17 +12,9 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  const { name, password } = req.body;
-  /* const user = await client.user.upsert({
-    where: {
-      ...(name && password ? { name } : {}),
-    },
-    create: {
-      name,
-      password,
-    },
-    update: {},
-  }); */
+  const { email } = req.body;
+  const user = email ? { email } : null;
+  if (!user) return res.status(400).json({ ok: false });
   const payload = Math.floor(100000 + Math.random() * 900000) + "";
   const token = await client.token.create({
     data: {
@@ -30,11 +22,10 @@ async function handler(
       user: {
         connectOrCreate: {
           where: {
-            ...(name && password ? { name } : {}),
+            ...user,
           },
           create: {
-            name,
-            password,
+            ...user,
           },
         },
       },
@@ -48,20 +39,3 @@ async function handler(
 export default withApiSession(
   withHandler({ method: "POST", handler, isPrivate: false })
 );
-// if (name && password) {
-//   user = await client.user.findUnique({
-//     where: {
-//       name,
-//     },
-//   });
-//   if (user) console.log("found it.");
-//   if (!user) {
-//     console.log("Did not find. Will create");
-//     user = await client.user.create({
-//       data: {
-//         name,
-//         password,
-//       },
-//     });
-//   }
-//   console.log(user);

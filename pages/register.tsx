@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import useMutation from "../libs/useMutation";
 
 function cls(...classnames: string[]) {
   return classnames.join(" ");
@@ -11,14 +12,19 @@ function cls(...classnames: string[]) {
 const Register: NextPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
-  const onValid = (data) => {
-    fetch("/api/users/enter", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
+  const [enter, { loading, data, error }] = useMutation("/api/users/enter");
+  const onValid = (data: any) => {
+    if (loading) return;
+    enter(data);
   };
+  useEffect(() => {
+    if (data?.ok) {
+      router.push("/");
+    }
+  }, [data, router]);
+
   return (
-    <div className="flex h-full w-full flex-col bg-black px-4">
+    <div className="flex-col px-4 py-4">
       <h3 className="mt-8 text-3xl font-medium">
         <svg
           className="h-20 w-20 text-white"
@@ -43,15 +49,9 @@ const Register: NextPage = () => {
           >
             <input
               className="rounded-md border-solid border-sky-400 py-2"
-              placeholder="아이디를 입력해주세요"
-              type="text"
-              {...register("id")}
-            ></input>
-            <input
-              className="rounded-md border-solid border-sky-400 py-2"
-              placeholder="패스워드를 입력해주세요"
-              type="password"
-              {...register("password")}
+              placeholder="이메일을 입력해주세요"
+              type="email"
+              {...register("email")}
             ></input>
             <button className="rounded-md border-2 border-sky-400 py-2 text-white">
               가입하기

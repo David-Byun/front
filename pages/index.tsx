@@ -11,8 +11,7 @@ function cls(...classnames: string[]) {
 }
 
 interface EnterForm {
-  name: string;
-  password: string;
+  email: string;
 }
 
 interface TokenForm {
@@ -27,7 +26,7 @@ const Home: NextPage = () => {
   const [enter, { loading, data, error }] =
     useMutation<MutationResult>("/api/users/enter");
   const [confirmToken, { loading: tokenLoading, data: tokenData }] =
-    useMutation<MutationResult>("/api/users/enter");
+    useMutation<MutationResult>("/api/users/confirm");
   const [submitting, setSubmitting] = useState(false);
   const { register, handleSubmit } = useForm();
   const { register: tokenRegister, handleSubmit: tokenHandleSubmit } =
@@ -45,11 +44,11 @@ const Home: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
     if (tokenData?.ok) {
-      router.push("/tweet");
+      router.push("/me/tweet");
     }
   }, [tokenData, router]);
   return (
-    <div className="flex h-full w-full flex-col bg-black px-4">
+    <div className="flex-col px-4 py-4">
       <img
         src="https://www.bworldonline.com/wp-content/uploads/2021/07/Twitter-640x569.jpg"
         height="800"
@@ -83,7 +82,7 @@ const Home: NextPage = () => {
                   className="rounded-md border-solid border-sky-400 py-2"
                   placeholder="토큰을 입력해주세요."
                   type="number"
-                  {...(tokenRegister("token"), { required: true })}
+                  {...tokenRegister("token")}
                 ></input>
                 <button className="rounded-md border-2 border-sky-400 py-2 text-white">
                   {submitting ? "Loading" : "확인"}
@@ -98,24 +97,18 @@ const Home: NextPage = () => {
               >
                 <input
                   className="rounded-md border-solid border-sky-400 py-2"
-                  placeholder="아이디를 입력해주세요"
-                  type="text"
-                  {...(register("name"), { required: true })}
-                ></input>
-                <input
-                  className="rounded-md border-solid border-sky-400 py-2"
-                  placeholder="패스워드를 입력해주세요"
-                  type="password"
-                  {...(register("password"), { required: true })}
+                  placeholder="이메일을 입력해주세요"
+                  type="email"
+                  {...register("email")}
                 ></input>
                 <button className="rounded-md border-2 border-sky-400 py-2 text-white">
                   {submitting ? "Loading" : "로그인"}
                 </button>
               </form>
               <div className="text-lg text-white">처음 이신가요?</div>
-              <form className="rounded-md border-2 border-sky-400 py-2 text-white">
+              <form className="flex flex-col rounded-md border-2 border-sky-400 py-2 text-white">
                 <button type="button" onClick={() => router.push("/register")}>
-                  가입하기
+                  {submitting ? "Loading" : "가입하기"}
                 </button>
               </form>
             </>

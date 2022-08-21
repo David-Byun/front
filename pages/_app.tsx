@@ -4,8 +4,9 @@ import { SWRConfig } from "swr";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="mx-auto w-full max-w-xl">
+    <div className="mx-auto h-full w-full max-w-xl bg-black">
       <Component {...pageProps} />
+      <div className="flex justify-end py-2 text-white">Designed by David</div>
     </div>
   );
 }
