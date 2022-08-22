@@ -19,7 +19,7 @@ const Register: NextPage = () => {
   };
   useEffect(() => {
     if (data?.ok) {
-      router.push("/");
+      router.push("/log-in");
     }
   }, [data, router]);
 

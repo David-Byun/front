@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import useSWR from "swr";
-import useMutation from "../../../libs/useMutation";
+import useMutation from "../../libs/useMutation";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
