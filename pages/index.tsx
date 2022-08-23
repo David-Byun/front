@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 import { NextPage } from "next";
 import useSWR from "swr";
 import useMutation from "../libs/useMutation";
-import Link from "next/link";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-const Tweet: NextPage = () => {
+const Home: NextPage = () => {
+  const router = useRouter();
   const { register, handleSubmit, reset } = useForm();
   const { data, mutate } = useSWR("api/users/me", fetcher);
   const [tweet, { data: tweetData, loading }] = useMutation(
@@ -20,6 +20,11 @@ const Tweet: NextPage = () => {
     tweet(tweetData);
     reset();
   };
+  useEffect(() => {
+    if (data && data?.ok === false) {
+      router.replace("/create-account");
+    }
+  }, [data, router]);
   useEffect(() => {
     if (tweetData && tweetData.ok) {
       mutate();
@@ -64,7 +69,7 @@ const Tweet: NextPage = () => {
             {" "}
             {data?.foundTweet?.map((tweet) => (
               <a
-                href={`/tweet/${tweet.id}`}
+                href={`/tweets/${tweet.id}`}
                 key={tweet?.id}
                 className="flex items-center space-y-3 border-b-2 py-3 pl-4"
               >
@@ -131,4 +136,4 @@ const Tweet: NextPage = () => {
   );
 };
 
-export default Tweet;
+export default Home;

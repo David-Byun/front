@@ -14,17 +14,19 @@ async function handler(
 ) {
   const {
     session: { user },
+    query: { id },
   } = req;
-  if (!user) return res.json({ ok: false });
-  const foundTweet = await client.tweet.findMany({
+  const otherTweet = await client.tweet.findUnique({
+    where: {
+      id: +id.toString(),
+    },
     include: { user: { select: { email: true } } },
   });
-  if (user) {
-    res.json({
-      ok: true,
-      foundTweet,
-    });
-  }
+  console.log(otherTweet);
+  res.json({
+    ok: true,
+    otherTweet,
+  });
 }
 
 export default withApiSession(withHandler({ method: "GET", handler }));

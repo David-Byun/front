@@ -1,16 +1,17 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { SWRConfig } from "swr";
+import * as React from "react";
+import { Reset } from "styled-reset";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="mx-auto h-full w-full max-w-xl bg-black">
+    <div className="mx-auto max-h-full w-full max-w-xl bg-black">
       <Component {...pageProps} />
-      <div className="flex justify-end py-2 text-white">Designed by David</div>
+      <div className="flex justify-end py-2 pr-2 text-white">
+        Designed by David
+      </div>
     </div>
   );
 }
 
 export default MyApp;
-
-// w-full max-w-xl mx-auto //
