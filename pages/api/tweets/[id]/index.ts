@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { client } from "../../../libs/client";
-import withHandler from "../../../libs/withHandlers";
-import { withApiSession } from "../../../libs/withSession";
+import { client } from "../../../../libs/client";
+import withHandler from "../../../../libs/withHandlers";
+import { withApiSession } from "../../../../libs/withSession";
 
 interface ResponseType {
   ok: boolean;
@@ -22,10 +22,21 @@ async function handler(
     },
     include: { user: { select: { email: true } } },
   });
-  console.log(otherTweet);
+  const isLiked = Boolean(
+    await client.like.findFirst({
+      where: {
+        tweetId: otherTweet?.id,
+        userId: user?.id,
+      },
+      select: {
+        id: true,
+      },
+    })
+  );
   res.json({
     ok: true,
     otherTweet,
+    isLiked,
   });
 }
 

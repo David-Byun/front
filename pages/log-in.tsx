@@ -85,7 +85,8 @@ const Home: NextPage = () => {
                   {...tokenRegister("token")}
                 ></input>
                 <button className="rounded-md border-2 border-sky-400 py-2 text-white">
-                  {submitting ? "Loading" : "확인"}
+                  {submitting ? "Loading" : "확인 토큰 : "}
+                  {data?.payload}
                 </button>
               </form>
             </>

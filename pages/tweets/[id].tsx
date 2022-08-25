@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import useSWR from "swr";
 import useMutation from "../../libs/useMutation";
+
+function cls(...classnames: string[]) {
+  return classnames.join(" ");
+}
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
@@ -14,6 +15,12 @@ const Tweet: NextPage = () => {
     router.query.id ? `/api/tweets/${router.query.id}` : null,
     fetcher
   );
+  const [toggleFav] = useMutation(`/api/tweets/${router.query.id}/like`);
+  const onFavClick = () => {
+    if (!data) return;
+    mutate((prev) => prev && { ...prev, isLiked: !data.isLiked }, false);
+    toggleFav({});
+  };
   return (
     <div className="flex  h-full w-full flex-col bg-black px-4">
       <div className="border-b-2 px-4 py-8">
@@ -38,8 +45,32 @@ const Tweet: NextPage = () => {
                 <div className="h-16 w-16 rounded-full bg-slate-300" />
                 <div className="pl-3 font-medium text-gray-500">
                   {data?.otherTweet?.user?.email}
-                  <div className="px-3 text-white">
-                    {data?.otherTweet?.tweet}
+                  <div className="flex flex-row justify-between space-x-5">
+                    <div className="px-2 text-white">
+                      {data?.otherTweet?.tweet}
+                    </div>
+                    <button
+                      onClick={onFavClick}
+                      className={cls(
+                        "flex items-center justify-center rounded-md p-3",
+                        data?.isLiked
+                          ? "text-red-400  hover:text-red-500"
+                          : "text-gray-400  hover:text-gray-500"
+                      )}
+                    >
+                      <svg
+                        className="h-6 w-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>

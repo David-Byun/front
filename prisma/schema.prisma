@@ -43,7 +43,6 @@ model Tweet {
 
 model Like {
   id        Int      @id @default(autoincrement())
-  like      String   @unique
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tweet     Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   userId    Int
