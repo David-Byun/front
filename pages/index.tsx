@@ -57,4 +57,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-3;
