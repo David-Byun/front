@@ -1,7 +1,7 @@
 import useUser from "@libs/client/useUser";
 import { Fav, Product, User } from "@prisma/client";
 import type { NextPage } from "next";
-import internal from "stream";
+import Image from "next/image";
 import useSWR from "swr";
 import FloatingButton from "../components/floating-button";
 import Item from "../components/item";
