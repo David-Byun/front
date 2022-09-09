@@ -1,11 +1,20 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@components/button";
 import Input from "@components/input";
 import { cls } from "@libs/client/utils";
 import useMutation from "@libs/server/useMutation";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+/* const Bs = dynamic(
+  () =>
+    new Promise((resolve) =>
+      setTimeout(() => resolve(import("@components/bs")))
+    ),
+  { ssr: false, suspense: true }
+); */
 
 interface EnterForm {
   email?: string;
