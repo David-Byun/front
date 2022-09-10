@@ -2,10 +2,12 @@ import useUser from "@libs/client/useUser";
 import { Fav, Product, User } from "@prisma/client";
 import type { NextPage } from "next";
 import Image from "next/image";
-import useSWR from "swr";
+import useSWR, { SWRConfig } from "swr";
 import FloatingButton from "../components/floating-button";
 import Item from "../components/item";
 import Layout from "../components/layout";
+import client from "@libs/server/client";
+import Head from "next/head";
 
 export interface ProductWithCount extends Product {
   _count: {
@@ -23,17 +25,22 @@ const Home: NextPage = () => {
   const { data } = useSWR<ProductsResponse>("/api/products");
   return (
     <Layout title="홈" hasTabBar>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className="flex flex-col space-y-5 divide-y">
-        {data?.products?.map((product) => (
-          <Item
-            id={product.id}
-            key={product.id}
-            title={product.name}
-            price={product.price}
-            comments={1}
-            hearts={product._count.favs}
-          />
-        ))}
+        {data
+          ? data?.products?.map((product) => (
+              <Item
+                id={product.id}
+                key={product.id}
+                title={product.name}
+                price={product.price}
+                comments={1}
+                hearts={product._count?.favs || 0}
+              />
+            ))
+          : "Loading"}
         <FloatingButton href="/products/upload">
           <svg
             className="h-6 w-6"
@@ -56,4 +63,30 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+const Page: NextPage<{ product: ProductWithCount[] }> = ({ product }) => {
+  return (
+    <SWRConfig
+      value={{
+        fallback: {
+          "/api/products": {
+            ok: true,
+            product,
+          },
+        },
+      }}
+    >
+      <Home />
+    </SWRConfig>
+  );
+};
+
+export async function getServerSideProps() {
+  const product = await client.product.findMany({});
+  console.log("SSR");
+  return {
+    props: {
+      product: JSON.parse(JSON.stringify(product)),
+    },
+  };
+}
+export default Page;
