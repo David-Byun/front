@@ -9,3 +9,7 @@ category: thoughts
 This is my fisrt blog post!
 
 Thank you for reading!
+
+- i
+- like
+- potatoes
