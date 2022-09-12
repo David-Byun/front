@@ -7,6 +7,7 @@ import Link from "next/link";
 import useSWR, { SWRConfig } from "swr";
 import Layout from "../../components/layout";
 import client from "@libs/server/client";
+import { Suspense } from "react";
 
 interface ReviewWithUser extends Review {
   createdBy: User;
@@ -149,23 +150,27 @@ const Profile: NextPage = () => {
   );
 };
 
-const Page: NextPage<{ profile: User }> = (profile) => {
+const Page: NextPage /* <{ profile: User }> */ = (/* profile */) => {
   return (
     <SWRConfig
       value={{
-        fallback: {
+        suspense: true,
+        /* fallback: {
           "/api/users/me": {
             profile,
           },
-        },
+        }, */
       }}
     >
-      <Profile />
+      <Suspense fallback={<span>Loading</span>}>
+        <Profile />
+      </Suspense>
     </SWRConfig>
   );
 };
 
-export const getServerSideProps = withSsrSession(async function ({
+/* Suspense 공부를 위한 주석처리 */
+/* export const getServerSideProps = withSsrSession(async function ({
   req,
 }: NextPageContext) {
   const profile = await client?.user.findUnique({
@@ -178,6 +183,6 @@ export const getServerSideProps = withSsrSession(async function ({
       profile: JSON.parse(JSON.stringify(profile)),
     },
   };
-});
+}); */
 
 export default Page;
