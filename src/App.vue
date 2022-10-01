@@ -3,32 +3,36 @@
     <span>Home</span>
     <span>Shop</span>
   </div>
-  <div v-if="1 == 2">안녕하세요</div>
-  <div v-else-if="1 == 1">안녕히가세요</div>
+  <DiscountBanner />
+  <ModalWindow
+    @closeModal="modal = false"
+    :products="products"
+    :modal="modal"
+    :clicked="clicked"
+  />
 
-  <div class="black-bg" v-if="modal == true">
-    <div class="white-bg">
-      <h4>{{ products[clicked].title }}</h4>
-      <p>{{ products[clicked].price }}</p>
-      <p>{{ products[clicked].content }}</p>
-      <button @click="modal = !modal">닫기</button>
-    </div>
-  </div>
-
-  <div @click="modal = !modal" v-for="(product, i) in products" :key="i">
-    <img :src="product.image" class="room-img" />
-    <h4 @click="누른거 = i">{{ product.title }}</h4>
-    <p>{{ product.price }}원</p>
-  </div>
+  <RoomCard
+    @openModal="
+      modal = true;
+      clicked = $event;
+    "
+    :product="products[i]"
+    v-for="(product, i) in products"
+    :key="i"
+  />
 </template>
 
 <script>
 import rooms from "./assets/oneroom";
+import DiscountBanner from "./DiscountBanner";
+import ModalWindow from "./ModalWindow.vue";
+import RoomCard from "./RoomCard.vue";
 
 export default {
   name: "App",
   data() {
     return {
+      object: { name: "kim", age: 20 },
       clicked: 0,
       modal: false,
       products: rooms,
@@ -41,7 +45,7 @@ export default {
       this.신고수[i] += 1;
     },
   },
-  components: {},
+  components: { DiscountBanner, ModalWindow, RoomCard },
 };
 </script>
 
@@ -81,9 +85,5 @@ div {
 .menu a {
   color: white;
   padding: 10px;
-}
-.room-img {
-  width: 100%;
-  margin-top: 40px;
 }
 </style>
