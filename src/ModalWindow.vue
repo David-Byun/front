@@ -6,6 +6,7 @@
       <p>{{ products[clicked].price }}</p>
       <p>{{ products[clicked].content }}</p>
       <input v-model.number="month" />
+      <input type="range" min="1" max="12" />
       <p>{{ month }} 개월 선택함 : {{ products[clicked].price * month }}원</p>
       <button @click="$emit('closeModal')">닫기</button>
     </div>
@@ -38,6 +39,9 @@ export default {
     products: Array,
     modal: Boolean,
     clicked: Number,
+  },
+  beforeUpdate() {
+    if (this.month == 2) alert("2를 기입했어요!");
   },
 };
 </script>
