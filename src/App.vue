@@ -44,41 +44,26 @@
       </div>
     </div>
   </nav>
-  <ul class="list-group">
-    <li class="list-group-item active" aria-current="true">An active item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
-  </ul>
-  <div class="card">
-    <div src="#" class="card-img-top" />
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-img-top" />
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+  <!-- <ListBlogVue :blog="blogData[i]" v-for="(blog, i) in blogData" :key="i" /> -->
+  <div>
+    <div><router-link to="/">홈리스트</router-link></div>
+    <div><router-link to="/list">리스트페이지</router-link></div>
+    <div><router-link to="/detail">상세페이지</router-link></div>
   </div>
+  <router-view :blogData="blogData"></router-view>
 </template>
 
 <script>
+import blogData from "./assets/data.js";
+
 export default {
   name: "App",
+  data() {
+    return {
+      blogData,
+    };
+  },
   components: {},
 };
 </script>
