@@ -16,7 +16,7 @@
       <p>{{ $store.state.likeNum }} Likes</p>
       <button @click="$store.commit('changeLike')">좋아요</button>
       <p>
-        <strong>{{ instaContent[i].name }}</strong> 임시내용
+        <strong>{{ instaContent[i].name }}</strong> 좋은 날이네요!
       </p>
       <p class="date">{{ instaContent[i].date }}</p>
     </div>

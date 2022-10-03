@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li @click="goBack()">Cancel</li>
     </ul>
     <ul class="header-button-right">
       <li v-if="step <= 1" @click="step++">Next</li>
@@ -9,12 +9,6 @@
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
-  <p>{{ myName }}{{ name }} {{ age }}</p>
-  <h4>나는 {{ $store.state.age }}살이야</h4>
-  <button @click="changeAge()">버튼</button>
-
-  <p>{{ $store.state.more }}</p>
-  <button @click="$store.dispatch('getData')">더보기 버튼</button>
 
   <ContainerInsta
     :instaContent="instaContent"
@@ -24,10 +18,6 @@
     @tap="if (step <= 1) ++step;"
     @write="write = $event"
   />
-  <button @click="[more(), ++clicked]">더보기</button>
-
-  <p>{{ now2 }} {{ counter }}</p>
-  <button @click="counter++">버튼</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -76,6 +66,9 @@ export default {
   methods: {
     now() {
       return new Date();
+    },
+    goBack() {
+      return this.$router.go(-1);
     },
     ...mapMutations(["setMore", "changeLike", "changeAge"]),
     publish() {

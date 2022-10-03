@@ -41,13 +41,18 @@ write!</textarea
         >
       </div>
     </div>
-    <button @click="$emit('tap')">탭키</button>
+
+    <div v-if="step == 3">
+      <MyPage />
+    </div>
   </div>
 </template>
 
 <script>
 import PostPicture from "./PostPicture.vue";
 import FilterBox from "./FilterBox.vue";
+import MyPage from "./MyPage.vue";
+
 export default {
   name: "ContainerInsta",
   data() {
@@ -82,7 +87,7 @@ export default {
       ],
     };
   },
-  components: { PostPicture, FilterBox },
+  components: { PostPicture, FilterBox, MyPage },
   props: {
     instaContent: Array,
     step: Number,
