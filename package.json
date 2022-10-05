@@ -10,7 +10,11 @@
   "dependencies": {
     "bootstrap": "^5.2.2",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "jquery": "^3.6.1",
+    "litepie-datepicker": "^1.0.14",
+    "v-calendar": "^3.0.0-alpha.8",
+    "vue": "^3.2.13",
+    "vue-router": "^4.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
