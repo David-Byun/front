@@ -1,11 +1,20 @@
 <template>
   <nav class="navbar bg-light sticky top-0">
     <div class="container-fluid">
-      <div class="navbar-brand" v-if="newSchool == ''">
+      <div class="navbar-brand" v-if="newSchool == '' && right == false">
         오늘부터 우리 학교 급식은?
       </div>
-      <div class="navbar-brand text-center" v-if="newSchool != ''">
+      <div
+        class="navbar-brand text-center"
+        v-if="newSchool != '' && right == false"
+      >
         오늘부터 {{ newSchool }} 급식은?
+      </div>
+      <div
+        class="navbar-brand text-center"
+        v-if="newSchool != '' && right == true"
+      >
+        학교를 다시 입력해주세요.
       </div>
       <form class="d-flex" role="search" @submit="onSchoolSubmit">
         <input
@@ -21,14 +30,14 @@
   </nav>
 
   <table
-    class="table text-center table-striped table-hover mb-4"
-    v-if="newSchool != ''"
+    class="table text-center table-striped table-hover"
+    v-if="newSchool != '' && right == false"
   >
     <thead>
       <tr>
         <th scope="col header">날짜</th>
         <th scope="col" class="table-warning header">메뉴</th>
-        <th scope="col" class="table-success header">칼로리</th>
+        <th scope="col" class="table-success header">열량</th>
         <th scope="col" class="table-info header">영양분</th>
       </tr>
     </thead>
@@ -63,7 +72,7 @@
     </tbody>
   </table>
 
-  <div class="card footer bottom-0 fixed-bottom">
+  <!-- <div class="card footer bottom-10 fixed-bottom">
     <h5 class="card-header text-right">
       <svg
         class="w-4 h-4 inline"
@@ -77,7 +86,7 @@
       </svg>
       2022 By David
     </h5>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -96,6 +105,7 @@ export default {
       keySchool: "",
       newSchool: "",
       fakeMeal: [],
+      right: false,
     };
   },
   mounted() {
@@ -133,7 +143,12 @@ export default {
       }
       if (this.newSchool != "") {
         for (var a in this.school) {
+          if (this.newSchool != this.school[a].schoolName) {
+            this.right == true;
+            this.meal = [];
+          }
           if (this.newSchool == this.school[a].schoolName) {
+            this.right == false;
             this.getData1(a);
             this.getData2(a);
             this.getData3(a);
@@ -167,7 +182,7 @@ export default {
               this.meal.push(mealData);
             }
           } catch (err) {
-            alert(err);
+            console.log(err.message);
           }
         });
     },
@@ -196,7 +211,7 @@ export default {
               this.meal.push(mealData);
             }
           } catch (err) {
-            alert(err);
+            console.log(err.message);
           }
         });
     },
@@ -238,7 +253,7 @@ export default {
   font-family: "Apple SD Gothic Neo", "Helvetica Neue", "Malgun Gothic", arial,
     sans-serif;
 }
-.footer {
+/* .footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -249,7 +264,7 @@ export default {
   color: #8a8c8f;
   border-top: 1px solid #dee5e7;
   background-color: #f2f2f2;
-}
+} */
 .link-icon {
   position: relative;
   display: inline-block;
