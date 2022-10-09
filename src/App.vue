@@ -1,7 +1,12 @@
 <template>
   <nav class="navbar bg-light sticky top-0">
     <div class="container-fluid">
-      <div class="navbar-brand">오늘부터 우리 학교 급식은?</div>
+      <div class="navbar-brand" v-if="newSchool == ''">
+        오늘부터 우리 학교 급식은?
+      </div>
+      <div class="navbar-brand text-center" v-if="newSchool != ''">
+        오늘부터 {{ newSchool }} 급식은?
+      </div>
       <form class="d-flex" role="search" @submit="onSchoolSubmit">
         <input
           class="form-control me-2"
@@ -14,14 +19,17 @@
       </form>
     </div>
   </nav>
-  <table class="table text-center">
+
+  <table
+    class="table text-center table-striped table-hover mb-4"
+    v-if="newSchool != ''"
+  >
     <thead>
       <tr>
-        <th scope="col">날짜</th>
-        <th scope="col">요일</th>
-        <th scope="col">메뉴</th>
-        <th scope="col">칼로리</th>
-        <th scope="col">영양분</th>
+        <th scope="col header">날짜</th>
+        <th scope="col" class="table-warning header">메뉴</th>
+        <th scope="col" class="table-success header">칼로리</th>
+        <th scope="col" class="table-info header">영양분</th>
       </tr>
     </thead>
     <tbody>
@@ -38,27 +46,27 @@
         :key="i"
       >
         <th scope="row" v-if="meal[i].ymd >= getToday()">
-          {{ meal[i].ymd }}
-        </th>
-        <td v-if="meal[i].ymd >= getToday()">
+          {{ meal[i].ymd.slice(-6).replace(/\B(?=(\d{2})+(?!\d))/g, ".") }}
           {{ getDateStr(meal[i].ymd) }}
-        </td>
-        <td v-if="meal[i].ymd >= getToday()">
+        </th>
+
+        <td v-if="meal[i].ymd >= getToday()" class="table-warning">
           {{ meal[i].dish }}
         </td>
-        <td v-if="meal[i].ymd >= getToday()">
+        <td v-if="meal[i].ymd >= getToday()" class="table-success">
           {{ meal[i].cal }}
         </td>
-        <td v-if="meal[i].ymd >= getToday()">
+        <td v-if="meal[i].ymd >= getToday()" class="table-info">
           {{ meal[i].ntr }}
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="card footer bottom-0">
+
+  <div class="card footer bottom-0 fixed-bottom">
     <h5 class="card-header text-right">
       <svg
-        class="w-6 h-6 inline"
+        class="w-4 h-4 inline"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +128,7 @@ export default {
       this.newSchool = this.keySchool;
       this.keySchool = "";
       if (this.newSchool == "") {
+        this.meal = [];
         return;
       }
       if (this.newSchool != "") {
@@ -127,11 +136,13 @@ export default {
           if (this.newSchool == this.school[a].schoolName) {
             this.getData1(a);
             this.getData2(a);
+            this.getData3(a);
           }
         }
       }
     },
     getData1(a) {
+      this.meal = [];
       axios
         .get(
           `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=3963590487aa4591b4def50e92f6b3db&Type=json&pIndex=4&pSize=100&ATPT_OFCDC_SC_CODE=${this.school[a].cityCode}&SD_SCHUL_CODE=${this.school[a].schoolCode}`
@@ -189,25 +200,68 @@ export default {
           }
         });
     },
+    getData3(a) {
+      axios
+        .get(
+          `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=3963590487aa4591b4def50e92f6b3db&Type=json&pIndex=6&pSize=100&ATPT_OFCDC_SC_CODE=${this.school[a].cityCode}&SD_SCHUL_CODE=${this.school[a].schoolCode}`
+        )
+        .then((result) => {
+          try {
+            const dataReturn = result.data;
+            for (var i in dataReturn.mealServiceDietInfo[1].row) {
+              var mealData = {
+                schulm: dataReturn.mealServiceDietInfo[1].row[i].SCHUL_NM,
+                ymd: dataReturn.mealServiceDietInfo[1].row[i].MLSV_YMD,
+                dish: dataReturn.mealServiceDietInfo[1].row[i].DDISH_NM.replace(
+                  /[^\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F\u3131-\u314E]/gi,
+                  " "
+                ),
+                cal: dataReturn.mealServiceDietInfo[1].row[i].CAL_INFO,
+                ntr: dataReturn.mealServiceDietInfo[1].row[i].NTR_INFO.replace(
+                  /<[^>]*>?/g,
+                  " "
+                ),
+              };
+              this.meal.push(mealData);
+            }
+          } catch (err) {
+            console.log(err.message);
+          }
+        });
+    },
   },
 };
 </script>
 
 <style>
 #app {
-  min-height: 100%;
-  position: relative;
+  font-family: "Apple SD Gothic Neo", "Helvetica Neue", "Malgun Gothic", arial,
+    sans-serif;
 }
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 60px;
+  height: 20px;
   width: 100%;
-  padding: 0 25px;
-  line-height: 60px;
+  padding: 0 5px;
+  line-height: 20px;
   color: #8a8c8f;
   border-top: 1px solid #dee5e7;
   background-color: #f2f2f2;
+}
+.link-icon {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-right: 10px;
+  padding-top: 50px;
+}
+.link-icon.kakao {
+  background-image: url(./assets/icon-kakao.png);
+  background-repeat: no-repeat;
 }
 </style>

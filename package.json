@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap": "^5.2.2",
     "core-js": "^3.8.3",
+    "dotenv": "^16.0.3",
     "jquery": "^3.6.1",
     "litepie-datepicker": "^1.0.14",
     "v-calendar": "^3.0.0-alpha.8",
