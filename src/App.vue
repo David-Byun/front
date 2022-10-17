@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar bg-light sticky top-0">
+  <!--  <nav class="navbar bg-light sticky top-0">
     <div class="container-fluid">
       <div class="navbar-brand" v-if="newSchool == '' && right == false">
         오늘부터 우리 학교 급식은?
@@ -27,7 +27,7 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
-  </nav>
+  </nav> -->
 
   <table
     class="table text-center table-striped table-hover"
@@ -71,6 +71,7 @@
       </tr>
     </tbody>
   </table>
+  <router-view></router-view>
 
   <!-- <div class="card footer bottom-10 fixed-bottom">
     <h5 class="card-header text-right">
