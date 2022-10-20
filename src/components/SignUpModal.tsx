@@ -13,7 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import SocialLogin from "./SocialLogin";
-import { FaUserNinja, FaLock } from "react-icons/fa";
+import { FaUserNinja, FaLock, FaEnvelope, FaUserSecret } from "react-icons/fa";
 
 interface SignUpModalProps {
   isOpen: boolean;
@@ -29,6 +29,26 @@ export default function SignUpModal({ isOpen, onClose }: SignUpModalProps) {
         <ModalCloseButton />
         <ModalBody>
           <VStack>
+            <InputGroup>
+              <InputLeftElement
+                children={
+                  <Box color="gray.500">
+                    <FaUserSecret />
+                  </Box>
+                }
+              />
+              <Input variant={"filled"} placeholder="Name" />
+            </InputGroup>
+            <InputGroup>
+              <InputLeftElement
+                children={
+                  <Box color="gray.500">
+                    <FaEnvelope />
+                  </Box>
+                }
+              />
+              <Input variant={"filled"} placeholder="Email" />
+            </InputGroup>
             <InputGroup>
               <InputLeftElement
                 children={
