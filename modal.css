@@ -11,3 +11,7 @@
   border-radius: 5px;
   padding: 30px;
 }
+
+.size-select {
+  display: none;
+}
