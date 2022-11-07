@@ -5,49 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="modal.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <form class="container my-5 form-group">
-        <p>상품선택</p>
-        <select class="form-select mt-2" onchange="onSelect()">
-          <option>모자</option>
-          <option>셔츠</option>
-          <option>바지</option>
-        </select>
-        <select class="size-select mt-2">
-          <option>90</option>
-          <option>95</option>
-          <option>100</option>
-        </select>
-
-        <div id="test"></div>
-      </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100" />
+          <h5>Card title</h5>
+          <p>가격 : 70000</p>
+        </div>
+      </div>
+      <div>
+        <button class="btn" id="price">가격순정렬</button>
+      </div>
     </div>
 
     <script>
-      var pants = [28, 30, 32, 34];
-      var shirts = [95, 100, 105];
-      var selectForm = document.querySelector('.form-select');
-      function onSelect(e) {
-        if (selectForm.options[selectForm.selectedIndex].value == '셔츠') {
-          document.querySelector('.size-select').style.display = 'block';
-        } else {
-          var tamplet = '<select><option>28</option>;<option>30</option>';
-          document.querySelector('.size-select').innerHTML = tamplet;
-        }
-      }
-      pants.forEach(function (a, i) {
-        console.log(i);
+      var products = [
+        { id: 0, price: 70000, title: 'Blossom Dress' },
+        { id: 1, price: 50000, title: 'Springfield Shirt' },
+        { id: 2, price: 60000, title: 'Black Monastery' },
+      ];
+      $('#price').click(function () {
+        products.sort(function (a, b) {
+          return a.price - b.price;
+        });
       });
-      shirts.forEach(function (a, i) {
-        console.log(a);
+
+      var array = [6, 3, 5, 2, 40];
+      var newArray = array.map(function (a) {
+        return a * 1000;
       });
-      var obj = { name: 'kim', age: 20 };
-      for (var key in obj) {
-        console.log(obj[key]);
-      }
+
+      셀렉트로찾은이미지.addEventListener('load', function () {
+        // 이미지 로드되면 실행할 코드
+      });
     </script>
   </body>
 </html>
