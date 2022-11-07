@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="modal.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="card-group container">
+      <div class="card">
+        <img src="https://via.placeholder.com/600" />
+        <div class="card-body">
+          <h5 class="car-title"></h5>
+          <p class="car-price"></p>
+          <button class="btn btn-danger">주문하기</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var products = [
+        { id: 0, price: 70000, title: 'Blossom Dress' },
+        { id: 1, price: 50000, title: 'Springfield Shirt' },
+        { id: 2, price: 60000, title: 'Black Monastery' },
+      ];
+      for (let i in products) {
+        document.querySelector(
+          '.car-title'
+        ).innerHTML = `<span>${products[i].title}<span>`;
+        document.querySelector(
+          '.car-price'
+        ).innerHTML = `<span>${products[i].price}</span>`;
+      }
+    </script>
+  </body>
+</html>
