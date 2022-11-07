@@ -14,21 +14,39 @@
         <select class="form-select mt-2" onchange="onSelect()">
           <option>모자</option>
           <option>셔츠</option>
+          <option>바지</option>
         </select>
         <select class="size-select mt-2">
           <option>90</option>
           <option>95</option>
           <option>100</option>
         </select>
+
+        <div id="test"></div>
       </form>
     </div>
 
     <script>
+      var pants = [28, 30, 32, 34];
+      var shirts = [95, 100, 105];
       var selectForm = document.querySelector('.form-select');
-      function onSelect() {
+      function onSelect(e) {
         if (selectForm.options[selectForm.selectedIndex].value == '셔츠') {
           document.querySelector('.size-select').style.display = 'block';
+        } else {
+          var tamplet = '<select><option>28</option>;<option>30</option>';
+          document.querySelector('.size-select').innerHTML = tamplet;
         }
+      }
+      pants.forEach(function (a, i) {
+        console.log(i);
+      });
+      shirts.forEach(function (a, i) {
+        console.log(a);
+      });
+      var obj = { name: 'kim', age: 20 };
+      for (var key in obj) {
+        console.log(obj[key]);
       }
     </script>
   </body>
