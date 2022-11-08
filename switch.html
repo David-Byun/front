@@ -13,13 +13,19 @@
     </div>
 
     <script>
-      if (true) {
-        let a = 1;
-        var b = 2;
-        if (true) {
-          let b = 3;
-        }
-        console.log(b);
+      글자세기('aacbbb');
+      function 글자세기(글자) {
+        var 결과 = {};
+
+        [...글자].forEach(function (a) {
+          if (결과[a] > 0) {
+            결과[a] = 결과[a] + 1;
+          } else {
+            결과[a] = 1;
+          }
+        });
+
+        console.log(결과);
       }
     </script>
   </body>
