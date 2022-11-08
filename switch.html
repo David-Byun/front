@@ -10,61 +10,68 @@
     <div></div>
 
     <script>
-      class 할아버지 {
-        constructor(name) {
-          this.성 = 'Kim';
-          this.이름 = name;
+      // 3번
+      class 강아지 {
+        constructor(type, color) {
+          this.type = type;
+          this.color = color;
         }
-        sayHi() {
-          console.log('안녕');
-        }
-      }
-
-      class 아버지 extends 할아버지 {
-        constructor(name) {
-          super(name); // extends해서 만든 class는 this 그냥은 못쓰고 super() 다음에 써야함 // 물려받는 class의 constructor라는 뜻
-          this.나이 = 50;
-        }
-        sayHi() {
-          console.log('안녕 저는 아버지에요');
-          super.sayHi();
+        한살먹기() {
+          console.error('강아지는 안돼!');
         }
       }
 
-      var 아버지1 = new 아버지();
-      아버지1.sayHi(); // 나랑 가까운 prototype 먼저 출력
+      class 고양이 extends 강아지 {
+        constructor(type, color, age) {
+          super(type, color);
+          this.age = age;
+          this.한살먹기 = function () {
+            console.log(this.age + 1);
+          };
+        }
+      }
 
-      var 사람 = {
-        name: 'Park',
-        age: 30,
-        get nextAge() {
-          //get은 데이터 꺼내쓰는 함수에 사용 // return이 있어야하며, 파라미터 없어야 함
-          return this.age + 1;
+      var 고양이1 = new 고양이('코숏', 'white', 5);
+      var 강아지1 = new 강아지('말티즈', 'brown');
+
+      // 4번
+      class Unit {
+        constructor(공격력 = 5, 체력 = 100) {
+          this.공격력 = 공격력;
+          this.체력 = 체력;
+        }
+        get battlePoint() {
+          return this.공격력 + this.체력;
+        }
+        set heal(int) {
+          this.체력 = this.체력 + int;
+        }
+      }
+
+      var test = new Unit();
+
+      // 5번
+
+      var data = {
+        odd: [],
+        even: [],
+        set setData(...num){
+          num.forEach((a)=>{
+            if (a % 2 == 1){
+              this.odd.push(a)
+            } else {
+              this.even.push(a)
+            }
+          })
         },
-        set setAge(나이) {
-          //set은 데이터 변경하는 함수에 사용 // 파라미터 1개 있어야 함
-          this.age = parseInt(나이);
+        get getData() {
+          return [...this.odd, ...this.even].sort();
         },
       };
-      // 사람.age = 20;
 
-      class 사람 {
-        constructor() {
-          this.name = 'Park';
-          this.age = 20;
-        }
-        get nextAge() {
-          return this.age + 1;
-        }
-        set setAge(나이) {
-          this.age = 나이;
-        }
-      }
+      data.setData(1);
 
-      var 사람2 = new 사람();
-
-      사람.setAge = '20';
-      사람2.nextAge;
+      // 5번 정답
     </script>
   </body>
 </html>
