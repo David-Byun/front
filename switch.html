@@ -7,11 +7,51 @@
     <title>Document</title>
   </head>
   <body>
-    <div></div>
+    <div><button id="button">프로미스</button></div>
 
-    <script type="module">
-      import c, { a as 별명, b as 아아 } from 'ES6/java.js';
-      console.log(변수);
+    <script>
+      var 프로미스 = new Promise(function (성공, 실패) {
+        document
+          .querySelector('#button')
+          .addEventListener('click', function () {
+            성공();
+          });
+      });
+      async function 버튼누르기() {
+        var 결과 = await 프로미스;
+        console.log('성공');
+      }
+      버튼누르기();
+
+      var 오브젝트 = { name: 'Kim', age: 30 };
+      for (var key in 오브젝트) {
+        console.log(오브젝트[key]);
+      }
+
+      class 부모 {}
+      부모.prototype.name = 'Park';
+      var 오브젝트 = new 부모();
+      for (var key in 오브젝트) {
+        if (오브젝트.hasOwnProperty(key)) {
+          console.log(오브젝트[key]);
+        }
+      }
+
+      var array = [2, 3, 4, 5];
+      for (var 자료 of array) {
+        console.log(자료);
+      }
+      // 자바스크립트는 가끔 비동기적인 처리도 가능
+      // setTimeout, 이벤트리스너, ajax 함수 쓰면 됨
+      // setTimeout 코드들 eventListener 코드들 실행 대기실
+      // javascript를 순차적으로 실행하려면 콜백함수를 사용함 콜백함수 : 함수 안에 들어가는 함수 // 콜백함수는 함수 디자인 패턴임
+      // 순차적으로 콜백함수를 쉽게 하기 위한 Promise 패턴, Promise는 성공/실패 판정 기계
+      // 1. 옆으로 길어지지 않아서 굿 2. 성공/실패 맞춰서 코드실행 가능
+      // 프로미스 1. 성공하면 <resolved> 2. 판정 대기중이면 <pending> 3. 실패하면 <rejected>
+      // fetch 함수는 promise를 return
+      // async를 function 앞에 붙이면 함수 실행 후에 Promise 오브젝트가 남음
+      // async await // async function 안에서 쓰는 await 는 then 대신 사용 가능함
+      // for in 반복문은 Object에 사용함
     </script>
   </body>
 </html>
