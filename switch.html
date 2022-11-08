@@ -10,19 +10,61 @@
     <div></div>
 
     <script>
-      class 부모 {
-        constructor(param) {
-          this.name = param;
-          this.sayHi = function () {
-            console.log('hello'); //construct 안에 함수는 자식의 함수
-          };
+      class 할아버지 {
+        constructor(name) {
+          this.성 = 'Kim';
+          this.이름 = name;
         }
         sayHi() {
-          console.log('hello'); //construct 밖에 함수는 부모.prototype에 추가됨
+          console.log('안녕');
         }
       }
 
-      var 자식 = new 부모();
+      class 아버지 extends 할아버지 {
+        constructor(name) {
+          super(name); // extends해서 만든 class는 this 그냥은 못쓰고 super() 다음에 써야함 // 물려받는 class의 constructor라는 뜻
+          this.나이 = 50;
+        }
+        sayHi() {
+          console.log('안녕 저는 아버지에요');
+          super.sayHi();
+        }
+      }
+
+      var 아버지1 = new 아버지();
+      아버지1.sayHi(); // 나랑 가까운 prototype 먼저 출력
+
+      var 사람 = {
+        name: 'Park',
+        age: 30,
+        get nextAge() {
+          //get은 데이터 꺼내쓰는 함수에 사용 // return이 있어야하며, 파라미터 없어야 함
+          return this.age + 1;
+        },
+        set setAge(나이) {
+          //set은 데이터 변경하는 함수에 사용 // 파라미터 1개 있어야 함
+          this.age = parseInt(나이);
+        },
+      };
+      // 사람.age = 20;
+
+      class 사람 {
+        constructor() {
+          this.name = 'Park';
+          this.age = 20;
+        }
+        get nextAge() {
+          return this.age + 1;
+        }
+        set setAge(나이) {
+          this.age = 나이;
+        }
+      }
+
+      var 사람2 = new 사람();
+
+      사람.setAge = '20';
+      사람2.nextAge;
     </script>
   </body>
 </html>
