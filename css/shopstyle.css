@@ -1,0 +1,238 @@
+* {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 130vh;
+}
+
+header {
+  width: 100%;
+  height: 8%;
+  display: flex;
+  background-color: white;
+  padding: 0px 10px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+
+header > div {
+  width: 50%;
+}
+
+main {
+  width: 60%;
+  height: 90%;
+  float: left;
+  padding: 10px;
+  margin-top: 100px;
+  padding-left: 10px;
+  padding: 0px 50px;
+}
+
+aside {
+  margin-top: 100px;
+  width: 40%;
+  height: 90%;
+  float: right;
+  padding-right: 80px;
+  padding-left: 50px;
+}
+
+footer {
+  width: 100%;
+  height: 2%;
+  clear: both;
+  padding: 10px;
+  position: relative;
+}
+
+.product-for {
+  color: brown;
+}
+
+.product-sale {
+  color: green;
+}
+
+div > button {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 10px 12px 10px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 50%;
+  text-decoration: none;
+}
+
+.container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0px 20px;
+}
+
+i {
+  font-size: 20px;
+  margin: 10px;
+  float: right;
+}
+
+.buy {
+  margin-top: 5%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.row,
+.col {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+.buy > .buy-wish {
+  margin-top: 10px;
+}
+
+.buy-login {
+  text-align: center;
+  color: white;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.buy-wish {
+  text-align: center;
+  background-color: white;
+  width: 100%;
+}
+
+.size {
+  margin-top: 30px;
+}
+
+.descript {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.size-ex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.size-ex__first {
+  font-weight: 500;
+}
+
+.size-ex__second {
+  font-weight: 300;
+}
+
+.col {
+  background-color: #f6f6f6;
+}
+
+.review > div {
+  font-size: 20px;
+  font-weight: 500;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px 0px;
+}
+
+.review {
+  margin-top: 50px;
+}
+
+.row > .col-sm-6 {
+  padding: 0px 50px;
+}
+
+.star {
+  text-align: right;
+  margin-right: 10px;
+}
+
+.review-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nike-img {
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.extra-information {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.descript-info {
+  font-weight: 600;
+  text-decoration: underline;
+  margin-top: 30px;
+}
+
+.cc {
+  background-color: white;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 100px) and (max-width: 769px) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  header {
+    width: 100%;
+    height: 4%;
+  }
+
+  aside,
+  main {
+    width: 100%;
+    height: 50%;
+    padding: 0 10px;
+  }
+  aside {
+    padding: 0 30px;
+  }
+  .product {
+    width: 769px;
+  }
+  footer {
+    display: none;
+  }
+  .sample2,
+  .sample3,
+  .sample4 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 770px) and (max-width: 1400px) {
+  footer {
+    display: none;
+  }
+  .sample3,
+  .sample4 {
+    display: none;
+  }
+  .descript {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+}
