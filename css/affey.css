@@ -1,0 +1,289 @@
+/* 브라우저 마진과 패딩 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  @font-face {
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+      format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+a {
+  text-decoration: none;  /* 텍스트 링크 밑줄 없애기 */ 
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+/*****************/
+/*  콘텐츠 영역  */
+/*****************/
+
+#body {
+  margin: 0;
+  padding: 0;
+  background-color: #d2d2d2;
+}
+
+#container {
+  margin: 0 auto; /* 화면 중앙에 배치 */
+  width: 1200px; /* 너비 */
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+*/ .container {
+  max-width: 1150px;
+  margin: 0 auto; /* 가운데 정렬 */
+  background-color: #fff;
+  box-sizing: border-box; /* 헤더 가로폭에 대표 이미지 박스 가로 크기도 맞춤 */
+}
+
+/*********************************/
+/* 헤더 영역 - 로고와 내비게이션 */
+/*********************************/
+
+header {
+  height: 180px; /* 높이 */
+  padding: 25px 10px 0;
+}
+
+/* 로고 */
+#logo {
+  float: left; /* 왼쪽으로 플로팅 */
+  margin-top: 30px;
+}
+
+#logo img {
+  width: 20%;
+  margin-left: 30px;
+}
+
+#menu {
+  height: 60px;
+  float: right;
+}
+
+#menu > li {
+  display: inline-block;
+  width: 160px;
+  padding-right: 20px;
+  float: left; /* 메뉴 항목을 왼쪽으로 플로팅 */
+  position: relative; /* 서브 메뉴를 absolute로 하기 위해, 이 부분을 relative로 */
+  text-align: center;
+}
+
+#menu > li > a {
+  display: block; /* 링크 텍스트는 블록으로 */
+  color: black; /* 글자 색 */
+  font-weight: 600; /* 글자 굵기 */
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+#menu > li > a:hover {
+  border-bottom: 1px solid #ff4e00;
+  color: #ff4e00;
+}
+
+#menu > li > ul {
+  /* 서브 메뉴 스타일 */
+  display: none; /* 서브 메뉴 처음에는 화면에 안 보이게 */
+  position: absolute; /* 서브 메뉴 포지셔닝 */
+  width: 160px;
+  background: rgba(255, 255, 255, 0.6); /* 슬라이드 쇼 비치도록 배경 색 조절 */
+  margin: 5px, 10px, 5px, 10px;
+  padding-top: 8px;
+}
+
+#menu > li > ul > li {
+  padding-bottom: 8px;
+}
+
+#menu > li > ul > li > a {
+  font-size: 14px;
+  color: #000;
+}
+
+#menu > li:hover > ul {
+  display: block; /* 메인 메뉴 항목 위로 오버하면 서브 메뉴 표시 */
+  z-index: 10; /* 슬라이드 쇼에 가리지 않게 조절 */
+}
+
+#menu > li > ul > li > a:hover {
+  color: #ff4e00; /* 서브 메뉴 마우스 오버하면 색상 바뀜 */
+
+}
+
+footer {
+  width: 1200px;
+  height: 310px;
+  margin: auto;
+  padding: 0 8px 0 8px;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.notice_box {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f3f6;
+}
+.notice_box a {
+  color: black;
+}
+.aside_box {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f1f3f6;
+}
+.area_user {
+  flex: 4;
+  line-height: 2em;
+}
+.area_user_row {
+  display: flex;
+}
+.area_user_row ƒspan {
+  flex: 1;
+}
+.area_user_row ul {
+  flex: 6;
+}
+.aur_title {
+  font-size: 23px;
+}
+.area_user_row ul > li {
+  display: inline-block;
+  margin-left: 8px;
+}
+.area_col {
+  flex: 1;
+}
+.area_col .ac_content {
+  line-height: 20px;
+}
+.area_col .ac_img {
+  width: 60px;
+  height: 60px;
+}
+.bottom_box {
+  flex: 3;
+  padding-top: 20px;
+  font-size: 18px;
+}
+.bottom_box ul > li {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.text_bold-13 {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.address {
+  font-size: 13px;
+  margin-left: 5px;
+}
+
+
+
+/************************/
+/*     비디오 페이지    */
+/************************/
+
+video {
+  width: 100%; 
+  margin-bottom: 40px;
+}
+
+.full_image {
+  width: 100%;
+  margin: 130px 0 60px 0;
+}
+
+@media (max-width: 1200px) {
+  .video{
+    width: 100%
+  }
+}
+
+h2 {
+  font-weight: 900;
+  font-size: 50px;
+  text-align: center;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 21px;
+  margin-bottom: 5px;
+}
+
+.phrase {
+  font-size: 17px;
+  text-align: center;
+}
+
+.buttons {
+  margin-top: 40px;
+  margin-bottom: 130px;
+}
+
+.buttons > a {
+  display: inline-block;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  width: auto;
+  padding: 9px 18px 7px 18px;
+  border-radius: 19px;
+}
+
+.buttons > a:hover {
+  background-color:rgb(91, 91, 91);
+  border: 1px solid rgb(91, 91, 91);
+}
+
+.buttons > a:not(:last-child) {
+  margin-right: 5px; 
+}
+
+.gallery {
+  column-width: 290px;
+  column-gap: 10px;
+  display: flex;
+  flex-direction: columns;
+}
+
+.gallery > div {
+  display: inline-block;
+  margin:0;
+  margin-bottom: 15px;
+  padding:5px;
+}
+
+.gallery > div > img {
+  width: 100%;
+}
+
+figcaption {
+  padding: 5px;
+  margin-top: 20px;
+  text-align: left;
+  word-break: keep-all;
+}
