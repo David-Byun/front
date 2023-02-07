@@ -1,0 +1,300 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 150%;
+  width: 100%;
+  color: white;
+  background-color: black;
+  display: flex;
+}
+
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+nav {
+  width: 14%;
+  float: left;
+  height: 150%;
+  align-items: flex-start;
+  border-right: 0.2px solid white;
+  position: fixed;
+  padding: 0 10px;
+  margin-right: 200px;
+}
+
+main {
+  width: 35%;
+  height: 150%;
+  padding-left: 240px;
+  margin-left: 300px;
+}
+
+aside {
+  width: 36%;
+  height: 150%;
+  padding: 0px 140px;
+  margin-right: 100px;
+}
+
+template {
+  width: 15%;
+  margin-right: 150px;
+}
+
+menu {
+  align-items: flex-end;
+}
+
+.box {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.friends {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.friends-box {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 10px;
+}
+
+.right-profile__main {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-detail div {
+  margin: 38px 20px;
+  font-size: 18px;
+}
+
+.menu-detail div span {
+  margin: 0 10px;
+}
+
+.logo {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.header-friends {
+  display: flex;
+  justify-content: flex-start;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.owner {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.owner-box {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.content div i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.grey {
+  color: grey;
+}
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+  margin-top: 20px;
+}
+.banner-header {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  margin-right: 10px;
+}
+
+.comment {
+  margin-top: 10px;
+}
+
+.comment-detail div {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.comment-detail span {
+  font-size: 14px;
+}
+
+.review {
+  border-bottom: 1px solid white;
+  padding: 10px 0px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.blue {
+  color: #077bcb;
+}
+
+.sm {
+  font-size: 11px;
+}
+
+.right-banner {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding: 0 20px;
+}
+
+.right-banner__person {
+  display: flex;
+  align-items: center;
+}
+
+.right-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.right-header__person {
+  display: flex;
+  align-items: center;
+}
+
+.right-header__profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 10px;
+}
+
+.recommend {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-top: 20px;
+}
+
+.recommend div {
+  font-size: 14px;
+}
+
+.name {
+  margin-top: 10px;
+  text-align: start;
+}
+
+.md {
+  font-weight: 400;
+}
+
+.space {
+  margin-bottom: 10px;
+}
+
+.bt {
+  margin-top: 370px;
+}
+
+.row-space {
+  margin-bottom: 5px;
+}
+
+.company {
+  padding: 0 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.profileImg2 {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(to right, red 0%, orange 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  background-color: white;
+}
+
+.content-bottom {
+  border-bottom: 0.5px solid white;
+  text-align: center;
+  padding: 40px 10px;
+}
+
+.content-bottom div {
+  margin-top: 5px;
+}
+
+.address {
+  margin-top: 2px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.notice {
+  position: relative;
+}
+
+.notice-dot {
+  position: fixed;
+  color: red;
+  left: 0;
+  display: inline-flex;
+}
