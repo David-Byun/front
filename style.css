@@ -298,3 +298,27 @@ menu {
   left: 0;
   display: inline-flex;
 }
+
+.hover:hover {
+  background-color: gray;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+.more-button {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+}
+
+.none {
+  display: none;
+}
+
+.bottom-button {
+  display: none;
+}
