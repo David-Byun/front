@@ -9,14 +9,21 @@
       src="https://kit.fontawesome.com/137b477d5b.js"
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" src="script.js"></script>
+
     <title>Instagram</title>
   </head>
   <body>
-    <nav>
+    <header>
       <div class="logo">
-        <img src="/images/logo.png" width="120px" height="50px" />
+        <img src="/images/logo.png" />
       </div>
+      <div class="menu-bar">
+        <div><i class="fas fa-search"></i></div>
+        <div><i class="fas fa-heart"></i></div>
+      </div>
+    </header>
+    <nav>
+      <img src="/images/logo.png" width="120px" height="50px" />
       <div class="menu">
         <div class="menu-detail">
           <div><i class="fa-solid fa-house"></i><span class="md">홈</span></div>
@@ -30,23 +37,24 @@
           <div>
             <i class="far fa-envelope"></i><span class="md">메시지</span>
           </div>
-          <div class="notice">
+          <fdiv class="notice">
             <i class="fa-regular fa-heart"></i><span class="md">알림</span>
-          </div>
+          </fdiv>
           <div>
             <i class="fa-regular fa-square-plus"><span>만들기</span></i>
           </div>
         </div>
 
         <div class="menu-detail bt">
-          <div>
+          <div id="moreBtn">
             <i class="fas fa-bars hover" id="more"></i><span>더 보기</span>
           </div>
         </div>
       </div>
       <!-- 더보기 버튼 클릭시 자바스크립트-->
     </nav>
-    <main>
+
+    <main id="main">
       <!-- 인스타그램 상단 회원 목록 -->
       <div class="header-friends">
         <div class="friends-profile">
@@ -89,17 +97,19 @@
                 <img class="profile" src="/images/4.jpg" />
               </div>
             </div>
-            <div>
+            <div class="median">
               Digi Campus
               <span class="sm grey">・ 1일</span>
               <div class="address sm grey">서울 성동구 성수동</div>
             </div>
           </div>
-          <div class="dot">・・・</div>
+          <div class="dot" id="dot1">・・・</div>
         </div>
         <!-- 메시지 작성부분-->
         <div>
-          <img src="/images/6.jpeg" width="550px" height="584px" />
+          <div class="img-size">
+            <img src="/images/6.jpeg" />
+          </div>
           <div class="content">
             <div>
               <i class="far fa-heart"></i><i class="far fa-comment"></i
@@ -125,7 +135,7 @@
         </div>
         <div>
           <div class="review">
-            <span class="grey">댓글 달기...</span>
+            <span class="grey sm">댓글 달기...</span>
             <i class="far fa-smile"></i>
           </div>
         </div>
@@ -139,13 +149,15 @@
                 <img class="profile" src="/images/3.jpg" />
               </div>
             </div>
-            <div>Bike GoGo</div>
+            <div class="median">Bike GoGo</div>
           </div>
-          <div class="dot">・・・</div>
+          <div class="dot" id="dot2">・・・</div>
         </div>
         <!-- 메시지 작성부분-->
         <div>
-          <img src="/images/11.jpg" width="550px" height="584px" />
+          <div class="img-size">
+            <img src="/images/11.jpg" />
+          </div>
           <div class="content">
             <div>
               <i class="far fa-heart"></i><i class="far fa-comment"></i
@@ -154,6 +166,7 @@
             <div><i class="fas fa-rss"></i></div>
           </div>
         </div>
+
         <!-- 댓글 및 공감 부분-->
         <div class="comment">
           <div class="comment-detail">
@@ -168,7 +181,7 @@
         </div>
         <div>
           <div class="review">
-            <span class="grey">댓글 달기...</span>
+            <span class="grey sm">댓글 달기...</span>
             <i class="far fa-smile"></i>
           </div>
         </div>
@@ -176,11 +189,11 @@
       <!-- 게시글 다볼 때-->
       <div class="content-bottom">
         <img src="/images/logo2.png" width="130px" height="110px" />
-        <div>모두 확인했습니다</div>
-        <div class="grey">
+        <div class="sm">모두 확인했습니다</div>
+        <div class="grey sm">
           최근 3일 동안 새롭게 올라온 게시물을 모두 확인했습니다.
         </div>
-        <div class="blue">이전 게시물 보기</div>
+        <div class="blue sm">이전 게시물 보기</div>
       </div>
     </main>
     <aside>
@@ -207,7 +220,7 @@
             <img class="right-profile__main" src="/images/2.jpg" />
           </div>
           <div>
-            <div>Rabbit</div>
+            <div class="sm">Rabbit</div>
             <div class="grey sm">so_y_e_n님 외 1명이 팔로우합니다</div>
           </div>
         </div>
@@ -220,11 +233,10 @@
             <img class="right-profile__main" src="/images/1.jpg" />
           </div>
           <div>
-            <div>Soul</div>
+            <div class="sm">Soul</div>
             <div class="grey sm">ye__seul님 외 1명이 팔로우합니다</div>
           </div>
         </div>
-
         <div class="blue sm">팔로우</div>
       </div>
       <div class="grey sm company">
@@ -232,7 +244,27 @@
       </div>
       <div class="grey sm company">© 2023 INSTAGRAM FROM META</div>
     </aside>
-    <template></template>
-    <script type="text/javascript" src="script.js"></script>
+    <!-- 팝업 관련-->
+    <div class="popup" id="popup">
+      <div class="red">신고</div>
+      <div class="red">팔로우 취소</div>
+      <div>즐겨찾기에 추가</div>
+      <div>게시물로 이동</div>
+      <div>공유 대상</div>
+      <div>링크 복사</div>
+      <div>퍼가기</div>
+      <div>취소</div>
+    </div>
+    <div class="bottom-popup" id="bottom-popup">
+      <div>설정</div>
+      <div>저장됨</div>
+      <div>모드 전환</div>
+      <div>내 활동</div>
+      <div>문제 신고</div>
+      <div>계정 전환</div>
+      <div>로그아웃</div>
+    </div>
+    <div class="mask" id="mask"></div>
+    <script src="script.js"></script>
   </body>
 </html>
