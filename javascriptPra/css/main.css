@@ -1,0 +1,112 @@
+@import "reset.css";
+
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.iphone {
+  background: linear-gradient(blue, pink);
+  display: flex;
+  position: relative;
+}
+
+.iphone__explain {
+  color: white;
+  padding: 50px;
+}
+
+.iphone__explain > h4 {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.iphone__explain > span {
+  font-size: 10px;
+}
+
+.iphone__image {
+  height: 300px;
+  width: 100px;
+}
+
+.iphone__image--picture {
+  height: 200px;
+  width: 200px;
+  position: fixed;
+  margin-top: 100px;
+  right: 130px;
+}
+
+button {
+  background: #444445;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  margin-top: 10px;
+}
+
+.portfolio {
+  margin-top: 30px;
+  height: 10%;
+  width: 100%;
+  text-align: center;
+}
+
+.portfolio > h3 {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.offer {
+  text-align: center;
+  background: #4e60c0;
+  color: white;
+  padding: 30px;
+}
+
+.icon__container {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.offer__header {
+  margin-bottom: 20px;
+}
+.offer__header > span {
+  font-size: 15px;
+}
+
+.offer__header :nth-child(2) {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.cando {
+  text-align: center;
+  padding: 30px;
+}
+
+.cando :nth-child(2) {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.project {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  items-align: center;
+  height: 15%;
+  width: 100%;
+}
+
+.project > div {
+  background-image: url("../img/portfolio-3.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+}

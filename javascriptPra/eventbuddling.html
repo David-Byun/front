@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="modal.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <button class="btn btn-danger" id="close">닫기</button>
+      </div>
+    </div>
+    <script>
+      var car2 = { name: '소나타', price: 50000 };
+      car.sort();
+      car.slice(1, 3);
+      document
+        .querySelector('.black-bg')
+        .addEventListener('click', function (e) {
+          if (e.target == document.querySelector('.black-bg')) {
+            document.querySelector('.white-bg').style.display = 'none';
+          }
+        });
+    </script>
+  </body>
+</html>

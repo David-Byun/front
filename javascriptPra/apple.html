@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="apple.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.slim.js"
+      integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk="
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="card-background">
+      <div class="card-box"><img src="card1.png" /></div>
+      <div class="card-box"><img src="card2.png" /></div>
+      <div class="card-box"><img src="card3.png" /></div>
+    </div>
+
+    <script>
+      $(window).scroll(function () {
+        var height = $(window).scrollTop();
+        var y = (-1 / 500) * height + 115 / 50;
+        // 650~1150까지 스크롤바를 내리면 첫째카드의 opacity 1~0으로 서서히 변경해주셈
+        $('.card-box').eq(0).css('opacity', y);
+      });
+    </script>
+  </body>
+</html>

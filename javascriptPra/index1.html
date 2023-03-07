@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="test.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">JSShop</span>
+        <span class="ms-auto mx-3 badge bg-dark">Dark</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 전체페이지 스크롤양 : window.scrollY -->
+    <!-- 스크롤바 내린 높이는 셀렉터.scrollTop : 위에서 얼만큼 내렸는지 알려주긴 하지만, -->
+    <!-- div의 스크롤바 내린 양 + 눈에 보이는 div 높이 ==(여유) div의 실제 높이 -->
+
+    <div class="lorem" sytle="width:200px; height:100px; overflow-y:scroll">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas
+      voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat
+      sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
+      praesentium exercitationem.
+    </div>
+    <script>
+      document.querySelector('.lorem').addEventListener('scroll', function () {
+        var 스크롤양 = document.querySelector('.lorem').scrollTop;
+        var 실제높이 = document.querySelector('.lorem').scrollHeight;
+        var 실제높이 = document.querySelector('.lorem').clientHeight;
+        console.log(스크롤양, 실제높이);
+      });
+    </script>
+
+    <div style="height: 1000px"></div>
+  </body>
+</html>
