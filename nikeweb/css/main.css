@@ -1,0 +1,285 @@
+/* 브라우저 마진과 패딩 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  @font-face {
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff')
+      format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+a {
+  text-decoration: none; /* 텍스트 링크 밑줄 없애기 */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* INPUT 가리기 */
+.section input[id*='slide'] {
+  display: none;
+}
+
+input {
+  opacity: 0;
+}
+
+/* 슬라이드 영역 - max-width 크기를 조절해주면 됩니다*/
+.section .slidewrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.section .slidelist {
+  white-space: nowrap;
+  font-size: 0;
+}
+.section .slidelist > li {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  transition: all 0.5s;
+}
+.section .slidelist > li > a {
+  display: block;
+  position: relative;
+}
+.section .slidelist > li > a img {
+  width: 100%;
+}
+
+/* 좌우로 넘기는 LABEL버튼에 대한 스타일 */
+.section .slidelist label {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 50px;
+  cursor: pointer;
+}
+.section .slidelist .left {
+  left: 30px;
+  background: url('./img/left.png') center center / 100% no-repeat;
+}
+.section .slidelist .right {
+  right: 30px;
+  background: url('./img/right.png') center center / 100% no-repeat;
+}
+
+/* INPUT 체크되면 변화값이 li까지 전달되는 스타일 */
+.section input[id='slide01']:checked ~ .slidewrap .slidelist > li {
+  transform: translateX(0%);
+}
+.section input[id='slide02']:checked ~ .slidewrap .slidelist > li {
+  transform: translateX(-100%);
+}
+.section input[id='slide03']:checked ~ .slidewrap .slidelist > li {
+  transform: translateX(-200%);
+}
+
+/**************************************/
+
+/*   콘텐츠 영역  */
+/**************************************/
+
+#body {
+  margin: 0;
+  padding: 0;
+  background-color: #d2d2d2;
+}
+
+*/ .container {
+  max-width: 1150px;
+  margin: 0 auto; /* 가운데 정렬 */
+  background-color: #fff;
+  box-sizing: border-box; /* 헤더 가로폭에 대표 이미지 박스 가로 크기도 맞춤 */
+}
+
+.row {
+  display: flex;
+  max-width: 1150px;
+  margin: 0 auto;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.main1 {
+  width: 300px;
+  border-radius: 100%;
+}
+
+.circle {
+  padding: 50px 50px;
+}
+
+.col-3 {
+  max-width: 1150px;
+  margin: 0 auto;
+  float: left;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+#container {
+  margin: 0 auto; /* 화면 중앙에 배치 */
+  width: 1200px; /* 너비 */
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+/*********************************/
+/* 헤더 영역 - 로고와 내비게이션 */
+/*********************************/
+
+header {
+  height: 180px; /* 높이 */
+  padding: 25px 10px 0;
+}
+
+/* 로고 */
+#logo {
+  float: left; /* 왼쪽으로 플로팅 */
+  margin-top: 30px;
+}
+
+#logo img {
+  width: 20%;
+  margin-left: 60px;
+}
+
+#menu {
+  height: 60px;
+  float: right;
+}
+
+#menu > li {
+  display: inline-block;
+  width: 160px;
+  float: left; /* 메뉴 항목을 왼쪽으로 플로팅 */
+  position: relative; /* 서브 메뉴를 absolute로 하기 위해, 이 부분을 relative로 */
+  text-align: center;
+}
+
+#menu > li > a {
+  display: block; /* 링크 텍스트는 블록으로 */
+  color: black; /* 글자 색 */
+  font-weight: 600; /* 글자 굵기 */
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+#menu > li > a:hover {
+  border-bottom: 1px solid #ff4e00;
+  color: #ff4e00;
+}
+
+#menu > li > ul {
+  /* 서브 메뉴 스타일 */
+  display: none; /* 서브 메뉴 처음에는 화면에 안 보이게 */
+  position: absolute; /* 서브 메뉴 포지셔닝 */
+  width: 160px;
+  background: rgba(255, 255, 255, 0.6); /* 슬라이드 쇼 비치도록 배경 색 조절 */
+  margin: 5px, 10px, 5px, 10px;
+  padding-top: 8px;
+}
+
+#menu > li > ul > li {
+  padding-bottom: 8px;
+}
+
+#menu > li > ul > li > a {
+  font-size: 14px;
+  color: #000;
+}
+
+#menu > li:hover > ul {
+  display: block; /* 메인 메뉴 항목 위로 오버하면 서브 메뉴 표시 */
+  z-index: 10; /* 슬라이드 쇼에 가리지 않게 조절 */
+}
+
+#menu > li > ul > li > a:hover {
+  color: #ff4e00; /* 서브 메뉴 마우스 오버하면 색상 바뀜 */
+}
+
+footer {
+  width: 1080px;
+  height: 310px;
+  margin: auto;
+  padding: 0 8px 0 8px;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.notice_box {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f3f6;
+}
+.notice_box a {
+  color: black;
+}
+.aside_box {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f1f3f6;
+}
+.area_user {
+  flex: 4;
+  line-height: 2em;
+}
+.area_user_row {
+  display: flex;
+}
+.area_user_row span {
+  flex: 1;
+}
+.area_user_row ul {
+  flex: 6;
+}
+.aur_title {
+  font-size: 23px;
+}
+.area_user_row ul > li {
+  display: inline-block;
+  margin-left: 8px;
+}
+.area_col {
+  flex: 1;
+}
+.area_col .ac_content {
+  line-height: 20px;
+}
+.area_col .ac_img {
+  width: 60px;
+  height: 60px;
+}
+.bottom_box {
+  flex: 3;
+  padding-top: 20px;
+  font-size: 18px;
+}
+.bottom_box ul > li {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.text_bold-13 {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.address {
+  font-size: 13px;
+  margin-left: 5px;
+}
